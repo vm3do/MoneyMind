@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('saving_goals', function (Blueprint $table) {
             $table->id();
+            $table->decimal('goal_amount', 10, 2);
+            $table->decimal('saved_amount', 10, 2);
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('saving_goals');
     }
 };

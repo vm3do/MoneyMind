@@ -16,6 +16,20 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Salary -->
+        <div class="mt-4">
+            <x-input-label for="salary" :value="__('Salary')" />
+            <x-text-input id="salary" class="block mt-1 w-full" type="number" name="salary" :value="old('salary')" required />
+            <x-input-error :messages="$errors->get('salary')" class="mt-2" />
+        </div>
+
+        <!-- Date -->
+        <div class="mt-4">
+            <x-input-label for="date" :value="__('Date')" />
+            <x-text-input id="date" class="block mt-1 w-full" type="number" min="1" max="31" name="salary_date" :value="old('salary_date')" required />
+            <x-input-error :messages="$errors->get('salary_date')" class="mt-2" />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
