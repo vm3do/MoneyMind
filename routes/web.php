@@ -16,11 +16,11 @@ Route::get('/', function () {
 //     return view('user.dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-Route::post('/dashboard/category/create/{id}', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
+Route::post('/dashboard/category/store', [CategoryController::class, 'store'])->name('category.store');
 Route::post('/dashboard/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/dashboard/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
-Route::delete('/dashboard/category/destroy/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+Route::delete('/dashboard/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index');
 Route::get('/statistics', [ExpenseController::class, 'index'])->name('statistics.index');

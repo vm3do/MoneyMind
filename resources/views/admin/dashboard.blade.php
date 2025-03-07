@@ -159,7 +159,7 @@
             <div x-show="show" class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                 <div x-show="show" class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg" @click.away="show = false">
-                    <form action="/categories" method="POST" class="p-6">
+                    <form action="{{ route('category.store')}}" method="POST" class="p-6">
                         @csrf
                         <div class="space-y-6">
                             <div class="flex items-center justify-between border-b border-slate-200 pb-4">
@@ -172,7 +172,7 @@
                             </div>
                             <div>
                                 <label for="category-name" class="block text-sm font-medium text-slate-700 mb-1">Category Name</label>
-                                <input type="text" name="category-name" id="category-name" required placeholder="Enter category name" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
+                                <input type="text" name="name" id="category-name" required placeholder="Enter category name" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
                             </div>
                             <div class="pt-2">
                                 <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg transition-all duration-200 font-medium">
