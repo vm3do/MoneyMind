@@ -695,6 +695,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('rangeInput').addEventListener('input', () => {
+            document.getElementById('rangeValue').textContent = document.getElementById('rangeInput').value + '%'
+        })
+    </script> 
 </body>
 
 </html>

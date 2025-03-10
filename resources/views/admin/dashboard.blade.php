@@ -7,7 +7,6 @@
     <title>Budget Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -121,18 +120,20 @@
                                         <p class="text-sm text-slate-500">{{$category->created_at->format('F j, y')}}</p>
                                     </div>
                                     <div class="flex items-center gap-2">
-                                        <form action="{{ route('category.edit', $category) }}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="p-2 hover:bg-[#4ECDC4]/10 rounded-lg transition-colors" title="Edit Category">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-5 h-5 text-[#4ECDC4]">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                </svg>
+
+                                            <button x-data onclick="populatedata(this)"  @click="$dispatch('open-modal', 'edit-category')"
+                                                
+                                                data-id="{{$category->id}}" 
+                                                data-name="{{$category->name}}"
+                                                class="p-2 hover:bg-[#4ECDC4]/10 rounded-lg transition-colors" title="Edit Category">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-5 h-5 text-[#4ECDC4]">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                    </svg>
                                             </button>
-                                        </form>
+
                                         <form action="{{ route('category.destroy', $category) }}" method="post">
                                             @csrf
                                             @method('DELETE')
@@ -172,7 +173,7 @@
                             </div>
                             <div>
                                 <label for="category-name" class="block text-sm font-medium text-slate-700 mb-1">Category Name</label>
-                                <input type="text" name="name" id="category-name" required placeholder="Enter category name" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
+                                <input type="text" name="name" required placeholder="Enter category name" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
                             </div>
                             <div class="pt-2">
                                 <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg transition-all duration-200 font-medium">
@@ -184,178 +185,63 @@
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Add Expense Modal -->
-    <div x-data="{
-        show: false,
-        isAutopay: false
-    }"
-        @open-modal.window="show = ($event.detail === 'add-expense' || $event.detail === 'add-autopay'); isAutopay = ($event.detail === 'add-autopay')"
-        @close-modal.window="show = false" @keydown.escape.window="show = false" x-show="show"
-        class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
-
-        <!-- Modal Backdrop -->
-        <div x-show="show" class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
-
-        <!-- Modal Content -->
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div x-show="show"
-                class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
-                @click.away="show = false">
-
-                <form action="/expenses" method="POST" class="p-6">
-                    @csrf
-                    <div class="space-y-6">
-                        <!-- Modal Header -->
-                        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-                            <h3 class="text-lg font-semibold text-slate-800"
-                                x-text="isAutopay ? 'Add Autopay Expense' : 'Add Expense'"></h3>
-                            <button type="button" @click="show = false" class="text-slate-400 hover:text-slate-500">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <!-- Form Fields -->
-                        <div class="space-y-5">
-                            <!-- Expense Name -->
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Expense
-                                    Name</label>
-                                <div class="relative">
-                                    <input type="text" name="name" id="name" required
-                                        placeholder="Enter expense name"
-                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
-                                </div>
+        <!-- Edit Category Modal -->
+        <div x-data="{ show: false }" @open-modal.window="show = ($event.detail === 'edit-category')" @close-modal.window="show = false" x-show="show" class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
+            <div x-show="show" class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div x-show="show" class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg" @click.away="show = false">
+                    <form id="edit-form" method="POST" class="p-6">
+                        @method('PUT')
+                        @csrf
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                                <h3 class="text-lg font-semibold text-slate-800">Edit Category</h3>
+                                <button type="button" @click="show = false" class="text-slate-400 hover:text-slate-500">
+                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
                             </div>
-
-                            <!-- Amount -->
                             <div>
-                                <label for="amount" class="block text-sm font-medium text-slate-700 mb-1">Amount
-                                    (DH)</label>
-                                <div class="relative">
-                                    <input type="number" name="amount" id="amount" required step="0.01"
-                                        placeholder="0.00"
-                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                                        <span class="text-slate-400">DH</span>
-                                    </div>
-                                </div>
+                                <label for="category-name" class="block text-sm font-medium text-slate-700 mb-1">Category Name</label>
+                                <input type="hidden" id="category-id" name="id">
+                                <input type="text" name="name" id="category-name" required placeholder="Enter category name" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
                             </div>
-
-                            <!-- Category -->
-                            <div>
-                                <label for="category"
-                                    class="block text-sm font-medium text-slate-700 mb-1">Category</label>
-                                <div class="relative">
-                                    <select name="category" id="category" required
-                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20 appearance-none">
-                                        <option value="" disabled selected>Select a category</option>
-                                        <option value="housing">Housing</option>
-                                        <option value="transportation">Transportation</option>
-                                        <option value="food">Food</option>
-                                        <option value="utilities">Utilities</option>
-                                        <option value="entertainment">Entertainment</option>
-                                        <option value="healthcare">Healthcare</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Date -->
-                            <div>
-                                <label for="date"
-                                    class="block text-sm font-medium text-slate-700 mb-1">Date</label>
-                                <div class="relative">
-                                    <input type="date" name="date" id="date" required
-                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
-                                </div>
-                            </div>
-
-                            <!-- Autopay Section -->
-                            <div x-data="{
-                                showFrequency: $data.isAutopay
-                            }" x-init="$watch('isAutopay', value => showFrequency = value)" class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">Autopay</label>
-                                    <div class="flex gap-4">
-                                        <label class="relative flex items-center">
-                                            <input type="radio" name="is_autopay" value="1"
-                                                x-bind:checked="isAutopay"
-                                                @change="showFrequency = $event.target.value === '1'"
-                                                class="peer sr-only">
-                                            <div
-                                                class="w-14 h-8 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#4ECDC4]/20 rounded-full peer peer-checked:after:translate-x-[24px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#4ECDC4]">
-                                            </div>
-                                            <span class="ml-3 text-sm font-medium text-slate-600">Yes</span>
-                                        </label>
-                                        <label class="relative flex items-center">
-                                            <input type="radio" name="is_autopay" value="0"
-                                                x-bind:checked="!isAutopay" @change="showFrequency = false"
-                                                class="peer sr-only">
-                                            <div
-                                                class="w-14 h-8 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#4ECDC4]/20 rounded-full peer peer-checked:after:translate-x-[24px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#4ECDC4]">
-                                            </div>
-                                            <span class="ml-3 text-sm font-medium text-slate-600">No</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Autopay Frequency -->
-                                <div x-show="showFrequency" x-transition class="space-y-3 pt-2">
-                                    <label class="block text-sm font-medium text-slate-700">Payment Frequency</label>
-                                    <div class="grid grid-cols-3 gap-3">
-                                        <label class="relative">
-                                            <input type="radio" name="frequency" value="daily"
-                                                class="peer sr-only">
-                                            <div
-                                                class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
-                                                Daily
-                                            </div>
-                                        </label>
-                                        <label class="relative">
-                                            <input type="radio" name="frequency" value="monthly"
-                                                class="peer sr-only" checked>
-                                            <div
-                                                class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
-                                                Monthly
-                                            </div>
-                                        </label>
-                                        <label class="relative">
-                                            <input type="radio" name="frequency" value="yearly"
-                                                class="peer sr-only">
-                                            <div
-                                                class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
-                                                Yearly
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
+                            <div class="pt-2">
+                                <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg transition-all duration-200 font-medium">
+                                    Edit Category
+                                </button>
                             </div>
                         </div>
-
-                        <!-- Submit Button -->
-                        <div class="pt-2">
-                            <button type="submit"
-                                class="w-full px-4 py-3 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-200 font-medium">
-                                Add Expense
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+        
+    </main>
+
+    <script>
+        function populatedata(button){
+            document.getElementById('category-id').value
+            button.getAttribute('data-id');
+
+            document.getElementById('category-id').value = button.getAttribute('data-id');
+
+            
+            document.getElementById('category-name').value = button.getAttribute('data-name');
+
+            console.log(document.getElementById('category-name').value)
+            console.log(button.getAttribute('data-name'));
+
+            id = button.getAttribute('data-id');
+
+            let form = document.getElementById('edit-form');
+            form.action = `/dashboard/category/update/${id}`;
+        }
+    </script>
+
+    
 </body>
 
 </html>

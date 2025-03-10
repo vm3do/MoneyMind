@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\Catch_;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,8 +19,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
 Route::post('/dashboard/category/store', [CategoryController::class, 'store'])->name('category.store');
-Route::post('/dashboard/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-Route::post('/dashboard/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+// Route::get('/dashboard/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/dashboard/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/dashboard/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index');
