@@ -5,8 +5,10 @@ use App\Http\Controllers\AlertController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfileController;
+use App\Mail\Email;
 use App\Models\Alert;
 use App\Models\Category;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Node\Stmt\Catch_;
 
@@ -18,6 +20,17 @@ Route::get('/', function () {
 // Route::get('/dashboard', function () {
 //     return view('user.dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
+// email test
+
+
+Route::get('/test-email', function(){
+    $name = 'Ayadi';
+    $emailmessage = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, omnis? Corporis dolorem officiis unde quidem illum dolor neque aliquam nesciunt!';
+    $response = Mail::to('mailtrap@test.com')->send(new Email($name, $emailmessage));
+    dd($response);
+});
+
 
 Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
 Route::post('/dashboard/category/store', [CategoryController::class, 'store'])->name('category.store');

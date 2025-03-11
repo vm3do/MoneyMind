@@ -130,7 +130,7 @@
                             <label class="block text-sm font-medium text-slate-700">Alert Threshold (% of
                                 Salary)</label>
                             <div class="flex items-center gap-4">
-                                <form action="{{ route('alert.store') }}" method="POST" id="alert-form">
+                                <form action="{{ route('alert.store') }}" method="POST" id="alert-form" class="w-full">
                                     @csrf
                                     <input type="range" id="rangeInput"
                                     class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF6B6B]"
