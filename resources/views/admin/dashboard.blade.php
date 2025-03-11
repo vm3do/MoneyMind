@@ -109,6 +109,12 @@
                         </button>
                     </div>
 
+                    @if(session('success'))
+                    <div class="bg-green-500 text-white p-3 rounded-lg mb-4">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
                         @foreach ($categories as $category)
@@ -117,7 +123,7 @@
                                 <div class="flex justify-between items-center">
                                     <div>
                                         <h4 class="text-lg font-semibold text-slate-800">{{ $category->name }}</h4>
-                                        <p class="text-sm text-slate-500">{{$category->created_at->format('F j, y')}}</p>
+                                        <p class="text-sm text-slate-500">{{$category->updated_at->format('F j, y')}}</p>
                                     </div>
                                     <div class="flex items-center gap-2">
 

@@ -130,14 +130,17 @@
                             <label class="block text-sm font-medium text-slate-700">Alert Threshold (% of
                                 Salary)</label>
                             <div class="flex items-center gap-4">
-                                <input type="range" id="rangeInput"
+                                <form action="{{ route('alert.store') }}" method="POST" id="alert-form">
+                                    @csrf
+                                    <input type="range" id="rangeInput"
                                     class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF6B6B]"
-                                    min="0" max="100" value="70">
-                                <span id="rangeValue" class="text-sm font-medium text-slate-800 min-w-[3rem]">70%</span>
+                                    min="0" max="100" name="percentage" value="{{$alert->percentage}}">
+                                </form>
+                                <span id="rangeValue" class="text-sm font-medium text-slate-800 min-w-[3rem]">{{$alert->percentage}}%</span>
                             </div>
                         </div>
 
-                        <button
+                        <button form="alert-form"
                             class="w-full px-4 py-2.5 bg-gradient-to-r from-[#FF6B6B] to-[#FF8E53] text-white rounded-xl hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-200 font-medium mt-8">
                             Save Alert Settings
                         </button>
