@@ -9,4 +9,6 @@ class Expense extends Model
 {
     /** @use HasFactory<\Database\Factories\ExpenseFactory> */
     use HasFactory;
+
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 }

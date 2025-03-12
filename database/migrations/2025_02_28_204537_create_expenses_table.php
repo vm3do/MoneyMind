@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->boolean('is_recurring')->default(false);
             $table->enum('frequency', ['yearly', 'monthly', 'daily']);
+            $table->integer('balance');
             $table->date('date');
             $table->timestamps();
         });
