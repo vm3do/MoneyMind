@@ -11,4 +11,12 @@ class Expense extends Model
     use HasFactory;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function user(){
+        $this->belongsTo(User::class);
+    }
+
+    public function category(){
+        $this->hasOne(Category::class);
+    }
 }

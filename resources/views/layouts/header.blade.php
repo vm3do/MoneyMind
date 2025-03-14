@@ -2,8 +2,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex items-center justify-between">
             <!-- Logo -->
-            
-            <!-- Logo Option 2: Stylized M Logo -->
+
             <div class="flex items-center flex-shrink-0">
                 <a href="#" class="flex items-center">
                     <div class="w-10 h-10 rounded-l-lg bg-gradient-to-br from-[#FF6B6B] to-[#fe945c] flex items-center justify-center">

@@ -32,7 +32,7 @@ Route::get('/test-email', function(){
 });
 
 
-Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 Route::post('/dashboard/category/store', [CategoryController::class, 'store'])->name('category.store');
 Route::put('/dashboard/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/dashboard/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');

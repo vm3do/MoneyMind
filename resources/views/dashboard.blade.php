@@ -34,7 +34,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Spent This Month</p>
-                            <h3 class="text-2xl font-bold text-gray-900 mt-1">1,500 DH</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mt-1">{{$totalExpense}}</h3>
                         </div>
                         <div class="p-3 bg-red-50 rounded-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

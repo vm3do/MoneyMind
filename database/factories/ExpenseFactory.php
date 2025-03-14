@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,13 @@ class ExpenseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word(),
+            'amount' => fake()->numberBetween(500, 5000),
+            'user_id' => 1,
+            'category_id' => Category::factory(),
+            'balance' => fake()->word(),
+            'date' => Carbon::today(),
+            
         ];
     }
 }

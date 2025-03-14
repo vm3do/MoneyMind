@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Alert;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -48,7 +49,13 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        Alert::create(['user_id' => Auth::user()->id, 'percentage' => 50]);
 
-        return redirect(route('dashboard', absolute: false));
+        if(Auth::user()->role == 'admin'){
+            return redirect(route('dashboard', absolute: false));
+        } else {
+            return redirect(route('expenses.index', absolute: false));
+        }
+
     }
 }

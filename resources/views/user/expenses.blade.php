@@ -70,7 +70,7 @@
                     <div class="grid grid-cols-2 gap-6">
                         <div class="space-y-1">
                             <p class="text-slate-500 text-sm">Total Expenses</p>
-                            <p class="text-2xl font-bold text-slate-800">4,250 DH</p>
+                            <p class="text-2xl font-bold text-slate-800">{{$totalExpense}} DH</p>
                             <span class="inline-flex items-center text-xs font-medium text-emerald-600">
                                 <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 8 8">
                                     <path d="M4 0l4 4H0z" />
@@ -80,21 +80,21 @@
                         </div>
                         <div class="space-y-1">
                             <p class="text-slate-500 text-sm">Monthly Budget</p>
-                            <p class="text-2xl font-bold text-slate-800">6,000 DH</p>
+                            <p class="text-2xl font-bold text-slate-800">{{$salary}} DH</p>
                             <span class="text-xs font-medium text-slate-500">
                                 71% utilized
                             </span>
                         </div>
                         <div class="space-y-1">
                             <p class="text-slate-500 text-sm">Fixed Expenses</p>
-                            <p class="text-2xl font-bold text-slate-800">3,149 DH</p>
+                            <p class="text-2xl font-bold text-slate-800">{{$fixedExpense}} DH</p>
                             <span class="text-xs font-medium text-slate-500">
                                 via Autopay
                             </span>
                         </div>
                         <div class="space-y-1">
                             <p class="text-slate-500 text-sm">Variable Expenses</p>
-                            <p class="text-2xl font-bold text-slate-800">1,101 DH</p>
+                            <p class="text-2xl font-bold text-slate-800">{{$variableExpense}} DH</p>
                             <span class="text-xs font-medium text-slate-500">
                                 this month
                             </span>
@@ -596,13 +596,9 @@
                                     <select name="category" id="category" required
                                         class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20 appearance-none">
                                         <option value="" disabled selected>Select a category</option>
-                                        <option value="housing">Housing</option>
-                                        <option value="transportation">Transportation</option>
-                                        <option value="food">Food</option>
-                                        <option value="utilities">Utilities</option>
-                                        <option value="entertainment">Entertainment</option>
-                                        <option value="healthcare">Healthcare</option>
-                                        <option value="other">Other</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach  
                                     </select>
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400"

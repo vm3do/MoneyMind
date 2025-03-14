@@ -5,15 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Expense;
 use Illuminate\Http\Request;
 use App\Models\Alert;
+use App\Models\Category;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class ExpenseController extends Controller
 {
 
     public function index()
     {
-        $alert = Alert::latest()->first();
+        $alert = Alert::where('user_id', FacadesAuth::user()->id)->first();
+        $categories = Category::all();
+        
+        $salaryDay = FacadesAuth::user()->salary_date;
+        $start_date = Carbon::now()->month()->day($salaryDay+1);
+        $end_date = Carbon::now()->month()->day($salaryDay-1);
+
+        $totalExpense = Expense::where('user_id', FacadesAuth::user()->id)->whereBetween('date', [$start_date, $end_date])->sum('amount');
+        $salary = User::where('id', FacadesAuth::user()->id)->first()->salary;
+        $fixedExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', true)->sum('amount');
+        $variableExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', true)->whereBetween('date', [$start_date, $end_date])->sum('amount');
+
+        // $expense =
         // dd($alert->percentage);
-        return view('user.expenses', compact('alert'));
+        return view('user.expenses', compact('alert', 'categories', 'totalExpense', 'salary', 'fixedExpense', 'variableExpense'));
     }
 
 

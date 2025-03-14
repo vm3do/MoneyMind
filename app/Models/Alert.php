@@ -10,5 +10,9 @@ class Alert extends Model
     /** @use HasFactory<\Database\Factories\AlertFactory> */
     use HasFactory;
 
-    protected $fillable = ['percentage']; 
+    protected $fillable = ['user_id', 'percentage']; 
+
+    public function user(){
+        $this->belongsTo(User::class);
+    }
 }

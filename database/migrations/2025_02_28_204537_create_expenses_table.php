@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('amount', 10, 2);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->boolean('is_recurring')->default(false);
             $table->enum('frequency', ['yearly', 'monthly', 'daily']);
-            $table->integer('balance');
+            $table->unsignedInteger('balance')->default(0);
             $table->date('date');
             $table->timestamps();
         });
