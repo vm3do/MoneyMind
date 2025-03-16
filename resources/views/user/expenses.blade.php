@@ -189,70 +189,63 @@
                         <div
                             class="grid grid-cols-1 md:grid-cols-3 gap-5 max-h-[460px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent hover:scrollbar-thumb-slate-300">
                             <!-- Rent Autopay Card -->
-                            <div class="relative">
-                                <div
-                                    class="p-6 bg-white rounded-2xl border border-slate-200/60 hover:border-[#FF6B6B]/30 transition-all duration-200">
-                                    <!-- Card Header -->
-                                    <div class="flex items-start justify-between mb-6">
-                                        <div class="flex items-center gap-4">
-                                            <div
-                                                class="w-12 h-12 rounded-xl bg-[#FF6B6B]/10 flex items-center justify-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-6 h-6 text-[#FF6B6B]">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h4 class="text-slate-800 font-semibold">Rent Payment</h4>
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FF6B6B]/10 text-[#FF6B6B] border border-[#FF6B6B]/20">
-                                                    High Priority
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-1">
-                                            <button class="p-2 hover:bg-[#FF6B6B]/10 rounded-lg transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-4 h-4 text-[#FF6B6B]">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
+                            @foreach ($autopays as $autopay)
 
-                                    <!-- Amount and Date -->
-                                    <div class="space-y-4">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <p class="text-slate-500 text-xs">Amount</p>
-                                                <p class="text-2xl font-bold text-slate-800">2,500 DH</p>
+                                <div class="relative">
+                                    <div
+                                        class="p-6 bg-white rounded-2xl border border-slate-200/60 hover:border-[#FF6B6B]/30 transition-all duration-200">
+                                        <!-- Card Header -->
+                                        <div class="flex items-start justify-between mb-6">
+                                            <div class="flex items-center gap-4">
+                                                <div
+                                                    class="w-12 h-12 rounded-xl bg-[#FF6B6B]/10 flex items-center justify-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-6 h-6 text-[#FF6B6B]">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-slate-800 font-semibold">{{ucwords($autopay->name)}}</h4>
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FF6B6B]/10 text-[#FF6B6B] border border-[#FF6B6B]/20">
+                                                        High Priority
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="text-right">
-                                                <p class="text-slate-500 text-xs">Next Payment</p>
-                                                <p class="text-slate-800 font-medium">March 1st</p>
+                                            <div class="flex gap-1">
+                                                <button x-data @click="$dispatch('open-modal', 'edit-autopay')" class="p-2 hover:bg-[#FF6B6B]/10 rounded-lg transition-colors">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-4 h-4 text-[#FF6B6B]">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                    </svg>
+                                                </button>
                                             </div>
                                         </div>
 
-                                        <!-- Progress Bar -->
-                                        <div class="space-y-2">
-                                            <div class="flex justify-between items-center">
-                                                <span class="text-xs font-medium text-slate-500">23 days until next
-                                                    payment</span>
-                                                <span class="text-xs font-medium text-[#FF6B6B]">75%</span>
+                                        <!-- Amount and Date -->
+                                        <div class="space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-slate-500 text-xs">Amount</p>
+                                                    <p class="text-2xl font-bold text-slate-800">{{$autopay->amount}} DH</p>
+                                                </div>
+                                                <div class="text-right">
+                                                    <p class="text-slate-500 text-xs">Next Payment</p>
+                                                    <p class="text-slate-800 font-medium">{{$autopay->next_autopay}}</p>
+                                                </div>
                                             </div>
-                                            <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                                                <div class="h-full w-[75%] bg-[#FF6B6B] rounded-full"></div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                
+                            @endforeach
 
                             
                         </div>
@@ -300,8 +293,6 @@
                             <thead>
                                 <tr class="border-b border-[--neutral-200]">
                                     <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Date</th>
-                                    <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">
-                                        Description</th>
                                     <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Category
                                     </th>
                                     <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Amount
@@ -311,45 +302,53 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-[--neutral-200]">
-                                <tr class="hover:bg-[--accent-light]/30 transition-colors">
-                                    <td class="py-4 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <span class="text-sm font-medium text-[--neutral-900]">Feb 20, 2024</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <span class="text-sm text-[--neutral-900]">Groceries Shopping</span>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                            Food
-                                        </span>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <span class="text-sm font-medium text-[--neutral-900]">250 DH</span>
-                                    </td>
-                                    <td class="py-4 px-4">
-                                        <div class="flex items-center justify-end gap-2">
-                                            <button class="p-2 hover:bg-[--accent-light] rounded-lg transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-5 h-5 text-[--accent]">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                </svg>
-                                            </button>
-                                            <button class="p-2 hover:bg-red-50 rounded-lg transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-5 h-5 text-red-500">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($expenses as $expense)
+
+                                    <tr class="hover:bg-[--accent-light]/30 transition-colors">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-sm font-medium text-[--neutral-900]">{{$expense->date}}</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                {{$expense->category->name}}
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <span class="text-sm font-medium text-[--neutral-900]">{{$expense->amount}} DH</span>
+                                        </td>
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center justify-end gap-2" x-data @click="$dispatch('open-modal', 'edit-expense')" >
+                                                <button class="p-2 hover:bg-[--accent-light] rounded-lg transition-colors"
+                                                    data-id="{{$expense->id}}"
+                                                    data-name="{{$expense->name}}"
+                                                    data-amount="{{$expense->amount}}"
+                                                    data-date="{{$expense->date}}"
+                                                    data-category="{{$expense->category->name}}"
+                                                    data-is-recurring="{{$expense->is_recurring}}"
+                                                    >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-5 h-5 text-[--accent]">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                    </svg>
+                                                </button>
+                                                <button class="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-5 h-5 text-red-500">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                @endforeach
                                 <tr class="hover:bg-[--accent-light]/30 transition-colors">
                                     <td class="py-4 px-4">
                                         <div class="flex items-center gap-3">
@@ -403,6 +402,173 @@
         isAutopay: false
     }"
         @open-modal.window="show = ($event.detail === 'add-expense' || $event.detail === 'add-autopay'); isAutopay = ($event.detail === 'add-autopay')"
+        @close-modal.window="show = false" @keydown.escape.window="show = false" x-show="show"
+        class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
+
+        <!-- Modal Backdrop -->
+        <div x-show="show" class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+
+        <!-- Modal Content -->
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div x-show="show"
+                class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+                @click.away="show = false">
+
+                <form action="{{route('expenses.store')}}" method="POST" class="p-6">
+                    @csrf
+                    <div class="space-y-6">
+                        <!-- Modal Header -->
+                        <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                            <h3 class="text-lg font-semibold text-slate-800"
+                                x-text="isAutopay ? 'Add Autopay Expense' : 'Add Expense'"></h3>
+                            <button type="button" @click="show = false" class="text-slate-400 hover:text-slate-500">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Form Fields -->
+                        <div class="space-y-5">
+                            <!-- Expense Name -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Expense
+                                    Name</label>
+                                <div class="relative">
+                                    <input type="text" name="name" id="name" required
+                                        placeholder="Enter expense name"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
+                                </div>
+                            </div>
+
+                            <!-- Amount -->
+                            <div>
+                                <label for="amount" class="block text-sm font-medium text-slate-700 mb-1">Amount
+                                    (DH)</label>
+                                <div class="relative">
+                                    <input type="number" name="amount" id="amount" required step="0.01"
+                                        placeholder="0.00"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                                        <span class="text-slate-400">DH</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Category -->
+                            <div>
+                                <label for="category"
+                                    class="block text-sm font-medium text-slate-700 mb-1">Category</label>
+                                <div class="relative">
+                                    <select name="category" id="category" required
+                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20 appearance-none">
+                                        <option value="" disabled selected>Select a category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach  
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Date -->
+                            <div>
+                                <label for="date"
+                                    class="block text-sm font-medium text-slate-700 mb-1">Date</label>
+                                <div class="relative">
+                                    <input type="date" name="date" id="date" required
+                                        class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
+                                </div>
+                            </div>
+
+                            <!-- Autopay Section -->
+                            <div x-data="{
+                                showFrequency: $data.isAutopay
+                            }" x-init="$watch('isAutopay', value => showFrequency = value)" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Autopay</label>
+                                    <div class="flex gap-4">
+                                        <label class="relative flex items-center">
+                                            <input type="radio" name="is_recurring" value="1"
+                                                x-bind:checked="isAutopay"
+                                                @change="showFrequency = $event.target.value === '1'"
+                                                class="peer sr-only">
+                                            <div
+                                                class="w-14 h-8 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#4ECDC4]/20 rounded-full peer peer-checked:after:translate-x-[24px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#4ECDC4]">
+                                            </div>
+                                            <span class="ml-3 text-sm font-medium text-slate-600">Yes</span>
+                                        </label>
+                                        <label class="relative flex items-center">
+                                            <input type="radio" name="is_recurring" value="0"
+                                                x-bind:checked="!isAutopay" @change="showFrequency = false"
+                                                class="peer sr-only">
+                                            <div
+                                                class="w-14 h-8 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#4ECDC4]/20 rounded-full peer peer-checked:after:translate-x-[24px] peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#4ECDC4]">
+                                            </div>
+                                            <span class="ml-3 text-sm font-medium text-slate-600">No</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Autopay Frequency -->
+                                <div x-show="showFrequency" x-transition class="space-y-3 pt-2">
+                                    <label class="block text-sm font-medium text-slate-700">Payment Frequency</label>
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <label class="relative">
+                                            <input type="radio" name="frequency" value="daily"
+                                                class="peer sr-only">
+                                            <div
+                                                class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
+                                                Daily
+                                            </div>
+                                        </label>
+                                        <label class="relative">
+                                            <input type="radio" name="frequency" value="monthly"
+                                                class="peer sr-only" checked>
+                                            <div
+                                                class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
+                                                Monthly
+                                            </div>
+                                        </label>
+                                        <label class="relative">
+                                            <input type="radio" name="frequency" value="yearly"
+                                                class="peer sr-only">
+                                            <div
+                                                class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
+                                                Yearly
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-2">
+                            <button type="submit"
+                                class="w-full px-4 py-3 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-200 font-medium">
+                                Add Expense
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Expense Modal -->
+    <div x-data="{
+        show: false,
+        isAutopay: false
+    }"
+        @open-modal.window="show = ($event.detail === 'edit-expense' || $event.detail === 'edit-autopay'); isAutopay = ($event.detail === 'edit-autopay')"
         @close-modal.window="show = false" @keydown.escape.window="show = false" x-show="show"
         class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
 

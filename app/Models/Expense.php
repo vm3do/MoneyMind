@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,32 @@ class Expense extends Model
     }
 
     public function category(){
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getNextAutopayAttribute(){
+        if(!$this->is_recurring){
+            return null;
+        }
+
+        $paid_on = $this->date;
+        $next_autopay = Carbon::parse($paid_on);
+        
+        switch ($this->frequency) {
+            case 'daily':
+                $next_autopay->addDay();
+                break;
+            case 'monthly':
+                $next_autopay->addMonth();
+                break;
+            case 'yearly':
+                $next_autopay->addYear();
+                break;
+            
+            default:
+            return null;
+        }
+
+        return $next_autopay->format('m F');
     }
 }

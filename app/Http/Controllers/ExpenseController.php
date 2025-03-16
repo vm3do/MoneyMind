@@ -16,6 +16,8 @@ class ExpenseController extends Controller
 
     public function index()
     {
+        $expenses = auth()->user()->expenses->where('is_recurring', false);
+        $autopays = auth()->user()->expenses->where('is_recurring', true);
         $alert = Alert::where('user_id', FacadesAuth::user()->id)->first();
         // dd($alert->toArray());
         $categories = Category::all();
@@ -31,7 +33,7 @@ class ExpenseController extends Controller
 
         // $expense =
         // dd($alert->percentage);
-        return view('user.expenses', compact('alert', 'categories', 'totalExpense', 'salary', 'fixedExpense', 'variableExpense'));
+        return view('user.expenses', compact('alert', 'categories', 'totalExpense', 'salary', 'fixedExpense', 'variableExpense', 'expenses', 'autopays'));
     }
 
 
@@ -61,7 +63,9 @@ class ExpenseController extends Controller
         $validated['user_id'] = auth()->id();
         $validated['category_id'] = $validated['category'];
         unset($validated['category']);
-        $test = Expense::create($validated);
+
+        Expense::create($validated);
+        return redirect()->back()->with('success', 'expense added');
     }
 
     /**
@@ -77,7 +81,8 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        //
+        Expense::findOrFail($expense);
+        Expense::updated($request->all());
     }
 
     /**
