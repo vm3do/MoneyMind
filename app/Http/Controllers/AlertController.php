@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alert;
+use App\Models\User;
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class AlertController extends Controller
 {
@@ -28,11 +31,11 @@ class AlertController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'percentage' => 'required|min:0|max:100'
         ]);
 
-        Alert::create($request->all());
+        Alert::create(['percentage' => $validated['percentage'], 'user_id' => FacadesAuth::user()->id]);
 
         return redirect()->back()->with('success', 'Alert Set Succesfully');
     }
@@ -58,7 +61,15 @@ class AlertController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'percentage' => 'required|integer|min:0|max:100'
+        ]);
+
+        $alert = Alert::findOrFail($id);
+        $alert->percentage = $validated['percentage'];
+        $alert->save();
+
+        return redirect()->back()->with('success', 'alert got updated');
     }
 
     /**

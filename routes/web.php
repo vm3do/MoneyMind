@@ -38,11 +38,15 @@ Route::put('/dashboard/category/update/{id}', [CategoryController::class, 'updat
 Route::delete('/dashboard/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index');
-Route::post('/expenses/alert', [AlertController::class, 'store'])->name('alert.store');
-Route::put('/expenses/alert', [AlertController::class, 'put'])->name('alert.put');
+Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
+Route::put('/expenses/{id}', [ExpenseController::class, 'update'])->name('expenses.update');
+Route::delete('/expenses/delete/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
 
-Route::get('/statistics', [ExpenseController::class, 'index'])->name('statistics.index');
-Route::get('/wishlist', [ExpenseController::class, 'index'])->name('wishlist.index');
+Route::post('/expenses/alert', [AlertController::class, 'store'])->name('alert.store');
+Route::put('/expenses/alert/{id}', [AlertController::class, 'update'])->name('alert.update');
+
+// Route::get('/statistics', [ExpenseController::class, 'index'])->name('statistics.index');
+// Route::get('/wishlist', [ExpenseController::class, 'index'])->name('wishlist.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -130,8 +130,9 @@
                             <label class="block text-sm font-medium text-slate-700">Alert Threshold (% of
                                 Salary)</label>
                             <div class="flex items-center gap-4">
-                                <form action="{{ route('alert.store') }}" method="POST" id="alert-form" class="w-full">
+                                <form action="{{ route('alert.update', $alert->id) }}" method="POST" id="alert-form" class="w-full">
                                     @csrf
+                                    @method('PUT')
                                     <input type="range" id="rangeInput"
                                     class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF6B6B]"
                                     min="0" max="100" name="percentage" value="{{$alert->percentage}}">
@@ -253,139 +254,7 @@
                                 </div>
                             </div>
 
-                            <!-- WiFi Subscription Card -->
-                            <div class="relative">
-                                <div
-                                    class="p-6 bg-white rounded-2xl border border-slate-200/60 hover:border-[#4ECDC4]/30 transition-all duration-200">
-                                    <!-- Card Header -->
-                                    <div class="flex items-start justify-between mb-6">
-                                        <div class="flex items-center gap-4">
-                                            <div
-                                                class="w-12 h-12 rounded-xl bg-[#4ECDC4]/10 flex items-center justify-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-6 h-6 text-[#4ECDC4]">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h4 class="text-slate-800 font-semibold">WiFi Subscription</h4>
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#4ECDC4]/10 text-[#4ECDC4] border border-[#4ECDC4]/20">
-                                                    High Priority
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-1">
-                                            <button class="p-2 hover:bg-[#4ECDC4]/10 rounded-lg transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-4 h-4 text-[#4ECDC4]">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Amount and Date -->
-                                    <div class="space-y-4">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <p class="text-slate-500 text-xs">Amount</p>
-                                                <p class="text-2xl font-bold text-slate-800">299 DH</p>
-                                            </div>
-                                            <div class="text-right">
-                                                <p class="text-slate-500 text-xs">Next Payment</p>
-                                                <p class="text-slate-800 font-medium">March 15th</p>
-                                            </div>
-                                        </div>
-
-                                        <!-- Progress Bar -->
-                                        <div class="space-y-2">
-                                            <div class="flex justify-between items-center">
-                                                <span class="text-xs font-medium text-slate-500">38 days until next
-                                                    payment</span>
-                                                <span class="text-xs font-medium text-[#4ECDC4]">50%</span>
-                                            </div>
-                                            <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                                                <div class="h-full w-[50%] bg-[#4ECDC4] rounded-full"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Electricity Bill Card -->
-                            <div class="relative">
-                                <div
-                                    class="p-6 bg-white rounded-2xl border border-slate-200/60 hover:border-purple-500/30 transition-all duration-200">
-                                    <!-- Card Header -->
-                                    <div class="flex items-start justify-between mb-6">
-                                        <div class="flex items-center gap-4">
-                                            <div
-                                                class="w-12 h-12 rounded-xl bg-[#FF6B6B]/10 flex items-center justify-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-6 h-6 text-purple-500">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <h4 class="text-slate-800 font-semibold">Electricity Bill</h4>
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FF6B6B]/10 text-[#FF6B6B] border border-[#FF6B6B]/20">
-                                                    High Priority
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="flex gap-1">
-                                            <button class="p-2 hover:bg-purple-500/10 rounded-lg transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-4 h-4 text-purple-500">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Amount and Date -->
-                                    <div class="space-y-4">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <p class="text-slate-500 text-xs">Amount</p>
-                                                <p class="text-2xl font-bold text-slate-800">350 DH</p>
-                                            </div>
-                                            <div class="text-right">
-                                                <p class="text-slate-500 text-xs">Next Payment</p>
-                                                <p class="text-slate-800 font-medium">March 20th</p>
-                                            </div>
-                                        </div>
-
-                                        <!-- Progress Bar -->
-                                        <div class="space-y-2">
-                                            <div class="flex justify-between items-center">
-                                                <span class="text-xs font-medium text-slate-500">43 days until next
-                                                    payment</span>
-                                                <span class="text-xs font-medium text-purple-500">25%</span>
-                                            </div>
-                                            <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                                                <div
-                                                    class="h-full w-[25%] bg-gradient-to-r from-purple-500 to-purple-400 rounded-full">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -546,7 +415,7 @@
                 class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
                 @click.away="show = false">
 
-                <form action="/expenses" method="POST" class="p-6">
+                <form action="{{route('expenses.store')}}" method="POST" class="p-6">
                     @csrf
                     <div class="space-y-6">
                         <!-- Modal Header -->
@@ -628,7 +497,7 @@
                                     <label class="block text-sm font-medium text-slate-700 mb-2">Autopay</label>
                                     <div class="flex gap-4">
                                         <label class="relative flex items-center">
-                                            <input type="radio" name="is_autopay" value="1"
+                                            <input type="radio" name="is_recurring" value="1"
                                                 x-bind:checked="isAutopay"
                                                 @change="showFrequency = $event.target.value === '1'"
                                                 class="peer sr-only">
@@ -638,7 +507,7 @@
                                             <span class="ml-3 text-sm font-medium text-slate-600">Yes</span>
                                         </label>
                                         <label class="relative flex items-center">
-                                            <input type="radio" name="is_autopay" value="0"
+                                            <input type="radio" name="is_recurring" value="0"
                                                 x-bind:checked="!isAutopay" @change="showFrequency = false"
                                                 class="peer sr-only">
                                             <div

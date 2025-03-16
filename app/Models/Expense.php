@@ -13,10 +13,10 @@ class Expense extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function user(){
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function category(){
-        $this->hasOne(Category::class);
+        return $this->hasOne(Category::class);
     }
 }

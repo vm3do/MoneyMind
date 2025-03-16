@@ -17,11 +17,12 @@ class ExpenseController extends Controller
     public function index()
     {
         $alert = Alert::where('user_id', FacadesAuth::user()->id)->first();
+        // dd($alert->toArray());
         $categories = Category::all();
-        
+
         $salaryDay = FacadesAuth::user()->salary_date;
-        $start_date = Carbon::now()->month()->day($salaryDay+1);
-        $end_date = Carbon::now()->month()->day($salaryDay-1);
+        $start_date = Carbon::now()->month()->day($salaryDay + 1);
+        $end_date = Carbon::now()->month()->day($salaryDay - 1);
 
         $totalExpense = Expense::where('user_id', FacadesAuth::user()->id)->whereBetween('date', [$start_date, $end_date])->sum('amount');
         $salary = User::where('id', FacadesAuth::user()->id)->first()->salary;
@@ -47,7 +48,20 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->all());
+        $validated = $request->validate([
+            'name' => 'required|min:3',
+            'amount' => 'required|numeric',
+            'category' => 'required|integer',
+            'date' => 'required|date',
+            'is_recurring' => 'required|boolean',
+            'frequency' => 'nullable|string|in:monthly,yearly,daily',
+        ]);
+
+        $validated['user_id'] = auth()->id();
+        $validated['category_id'] = $validated['category'];
+        unset($validated['category']);
+        $test = Expense::create($validated);
     }
 
     /**

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('salary', 10, 2);
             $table->integer('salary_date');
             $table->enum('role', ['admin', 'user'])->default('user');
+            $table->unsignedInteger('balance')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

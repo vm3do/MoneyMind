@@ -49,10 +49,10 @@ class User extends Authenticatable
     }
 
     public function expenses(){
-        $this->hasMany(Expense::class);
+        return $this->hasMany(Expense::class);
     }
 
     public function alert(){
-        $this->hasOne(Alert::class);
+        return $this->hasOne(Alert::class);
     }
 }

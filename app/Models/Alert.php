@@ -13,6 +13,6 @@ class Alert extends Model
     protected $fillable = ['user_id', 'percentage']; 
 
     public function user(){
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

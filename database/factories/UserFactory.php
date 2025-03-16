@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => 'medo@gmail.com',
             'email_verified_at' => now(),
             'salary' => fake()->numberBetween(1500, 4000),
             'salary_date' => fake()->numberBetween(1, 31),
