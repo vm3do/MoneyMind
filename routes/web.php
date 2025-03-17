@@ -5,6 +5,7 @@ use App\Http\Controllers\AlertController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatisticController;
 use App\Mail\Email;
 use App\Models\Alert;
 use App\Models\Category;
@@ -45,7 +46,7 @@ Route::delete('/expenses/delete/{id}', [ExpenseController::class, 'destroy'])->n
 Route::post('/expenses/alert', [AlertController::class, 'store'])->name('alert.store');
 Route::put('/expenses/alert/{id}', [AlertController::class, 'update'])->name('alert.update');
 
-// Route::get('/statistics', [ExpenseController::class, 'index'])->name('statistics.index');
+Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
 // Route::get('/wishlist', [ExpenseController::class, 'index'])->name('wishlist.index');
 
 Route::middleware('auth')->group(function () {

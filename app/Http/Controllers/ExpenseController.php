@@ -8,6 +8,8 @@ use App\Models\Alert;
 use App\Models\Category;
 use App\Models\User;
 use Carbon\Carbon;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
@@ -23,17 +25,68 @@ class ExpenseController extends Controller
         $categories = Category::all();
 
         $salaryDay = FacadesAuth::user()->salary_date;
-        $start_date = Carbon::now()->month()->day($salaryDay + 1);
-        $end_date = Carbon::now()->month()->day($salaryDay - 1);
+        $start_date = Carbon::now()->month()->day($salaryDay);
+        $end_date = Carbon::now()->addMonth()->day($salaryDay - 1);
 
-        $totalExpense = Expense::where('user_id', FacadesAuth::user()->id)->whereBetween('date', [$start_date, $end_date])->sum('amount');
+        $totalExpense = Expense::where('user_id', FacadesAuth::user()->id)->whereBetween('created_at', [$start_date, $end_date])->sum('amount');
         $salary = User::where('id', FacadesAuth::user()->id)->first()->salary;
         $fixedExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', true)->sum('amount');
-        $variableExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', true)->whereBetween('date', [$start_date, $end_date])->sum('amount');
+        $variableExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', false)->whereBetween('date', [$start_date, $end_date])->sum('amount');
 
-        // $expense =
-        // dd($alert->percentage);
+        $expense_categories = auth()->user()->expenses()
+                                        ->join('categories', 'expenses.category_id', '=', 'categories.id')
+                                        ->selectRaw('categories.name, SUM(expenses.amount) as total')
+                                        ->groupBy('categories.name')->get();
+                                        // dd(implode(',', $expense_categories->pluck('total, name')->toArray()));
+        $total_categories = $expense_categories->map(function($item){
+            return  "{$item->name} : {$item->total}";
+        })->implode(', ');
+
+        // dd($total_categories);
+
+        // dd(implode(',', $total_categories->toArray()));
+
+        $array = [
+            'Salary' => $salary,
+            'Total Expenses of the current month' => $totalExpense,
+            'Salary Day' => $salaryDay,
+            'Categories Expenses' => $total_categories,
+            'Auropayed Expenses' => $fixedExpense,
+        ];
+
+        // dd($array);
+        $this->callApi($array);
+
+
+
         return view('user.expenses', compact('alert', 'categories', 'totalExpense', 'salary', 'fixedExpense', 'variableExpense', 'expenses', 'autopays'));
+    }
+
+    public function callApi($array)
+    {
+        $client = new Client();
+        $api_key = config('services.gemini.key');
+        $uri = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$api_key";
+        $informations = "";
+        foreach($array as $key => $value){
+            $informations .= "$key: $value, ";
+        };
+
+        $json = [
+            'contents' => [
+                [
+                    'parts' => [
+                        ['text' => $informations . ' based on these informations, give me an appropriate suggestion in a short message']
+                    ]
+                ]
+            ]
+        ];
+
+        $response = $client->post($uri, [
+            'headers' => ['Content-Type' => 'application/json'],
+            'json' =>$json
+        ]);
+        dd($response->getBody());
     }
 
 

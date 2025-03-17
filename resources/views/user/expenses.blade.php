@@ -150,6 +150,58 @@
             </div>
         </div>
 
+        <!-- Smart Insights Section -->
+        <div class="mb-8">
+            <div class="relative group">
+                <div class="absolute inset-0 bg-gradient-to-br from-[#4ECDC4]/30 via-[#45B7D1]/30 to-[#2C3E50]/30 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl rounded-2xl"></div>
+                <div class="relative bg-gradient-to-br from-white via-slate-50 to-white rounded-2xl shadow-lg p-8 border border-slate-200/60 backdrop-blur-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex items-center gap-3">
+                            <span class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-slate-800 text-lg font-bold">Smart Insights</h3>
+                                <p class="text-slate-500 text-sm">AI-powered financial analysis</p>
+                            </div>
+                        </div>
+                        <span class="px-4 py-1.5 bg-gradient-to-r from-[#4ECDC4]/10 to-[#45B7D1]/10 text-[#4ECDC4] text-sm font-medium rounded-full border border-[#4ECDC4]/20">Updated today</span>
+                    </div>
+
+                    <div class="flex items-start gap-6">
+                        <div class="flex-1">
+                            <div class="p-6 rounded-xl bg-gradient-to-br from-[#4ECDC4]/5 to-[#45B7D1]/5 border border-[#4ECDC4]/20">
+                                <p class="text-slate-600 leading-relaxed">
+                                    Based on your recent transactions, we've noticed increased spending in dining and entertainment categories. 
+                                    Consider setting a monthly budget of <span class="font-semibold text-[#4ECDC4]">1,200 DH</span> for these activities. 
+                                    This could help you save an additional <span class="font-semibold text-[#4ECDC4]">400 DH</span> monthly towards your savings goal.
+                                </p>
+                                <div class="flex items-center gap-4 mt-4">
+                                    <button class="px-4 py-2 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white text-sm font-medium rounded-lg shadow-lg shadow-teal-500/30 hover:shadow-teal-500/40 transition-all duration-300">
+                                        Set Budget →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden lg:block w-48 h-48">
+                            <div class="w-full h-full rounded-full bg-gradient-to-br from-[#4ECDC4]/10 to-[#45B7D1]/10 border border-[#4ECDC4]/20 flex items-center justify-center">
+                                <div class="w-36 h-36 rounded-full bg-gradient-to-br from-[#4ECDC4]/20 to-[#45B7D1]/20 border border-[#4ECDC4]/30 flex items-center justify-center">
+                                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30 flex items-center justify-center text-white">
+                                        <div class="text-center">
+                                            <div class="text-2xl font-bold">25%</div>
+                                            <div class="text-xs opacity-90">Over Budget</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Autopay Management Section -->
         <div class="mb-8">
             <div class="relative group">
@@ -300,6 +352,7 @@
                         <table class="w-full">
                             <thead>
                                 <tr class="border-b border-[--neutral-200]">
+                                    <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Name</th>
                                     <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Date</th>
                                     <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Category
                                     </th>
@@ -313,6 +366,11 @@
                                 @foreach ($expenses as $expense)
 
                                     <tr class="hover:bg-[--accent-light]/30 transition-colors">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <span class="text-sm font-medium text-[--neutral-900]">{{$expense->name}}</span>
+                                            </div>
+                                        </td>
                                         <td class="py-4 px-4">
                                             <div class="flex items-center gap-3">
                                                 <span class="text-sm font-medium text-[--neutral-900]">{{$expense->date}}</span>
