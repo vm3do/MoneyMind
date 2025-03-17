@@ -174,9 +174,7 @@
                         <div class="flex-1">
                             <div class="p-6 rounded-xl bg-gradient-to-br from-[#4ECDC4]/5 to-[#45B7D1]/5 border border-[#4ECDC4]/20">
                                 <p class="text-slate-600 leading-relaxed">
-                                    Based on your recent transactions, we've noticed increased spending in dining and entertainment categories. 
-                                    Consider setting a monthly budget of <span class="font-semibold text-[#4ECDC4]">1,200 DH</span> for these activities. 
-                                    This could help you save an additional <span class="font-semibold text-[#4ECDC4]">400 DH</span> monthly towards your savings goal.
+                                    {{session('ai_insight') ?? 'no smart insight available right now ! try adding an expense or wait until the next one'}}
                                 </p>
                                 <div class="flex items-center gap-4 mt-4">
                                     <button class="px-4 py-2 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white text-sm font-medium rounded-lg shadow-lg shadow-teal-500/30 hover:shadow-teal-500/40 transition-all duration-300">

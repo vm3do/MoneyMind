@@ -46,16 +46,6 @@ class ExpenseController extends Controller
 
         // dd(implode(',', $total_categories->toArray()));
 
-        $array = [
-            'Salary' => $salary,
-            'Total Expenses of the current month' => $totalExpense,
-            'Salary Day' => $salaryDay,
-            'Categories Expenses' => $total_categories,
-            'Auropayed Expenses' => $fixedExpense,
-        ];
-
-        // dd($array);
-        $this->callApi($array);
 
 
 
@@ -86,7 +76,10 @@ class ExpenseController extends Controller
             'headers' => ['Content-Type' => 'application/json'],
             'json' =>$json
         ]);
-        dd($response->getBody());
+
+        $message = json_decode($response->getBody(), true);
+        return $message['candidates'][0]['content']['parts'][0]['text'];
+        
     }
 
 
@@ -103,7 +96,33 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+
+        $salaryDay = FacadesAuth::user()->salary_date;
+        $start_date = Carbon::now()->month()->day($salaryDay);
+        $end_date = Carbon::now()->addMonth()->day($salaryDay - 1);
+
+        $totalExpense = Expense::where('user_id', FacadesAuth::user()->id)->whereBetween('created_at', [$start_date, $end_date])->sum('amount');
+        $salary = User::where('id', FacadesAuth::user()->id)->first()->salary;
+        $fixedExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', true)->sum('amount');
+
+        $expense_categories = auth()->user()->expenses()
+                                        ->join('categories', 'expenses.category_id', '=', 'categories.id')
+                                        ->selectRaw('categories.name, SUM(expenses.amount) as total')
+                                        ->groupBy('categories.name')->get();
+                                        // dd(implode(',', $expense_categories->pluck('total, name')->toArray()));
+        $total_categories = $expense_categories->map(function($item){
+            return  "{$item->name} : {$item->total}";
+        })->implode(', ');
+
+
+        $array = [
+            'Salary' => $salary,
+            'Total Expenses of the current month' => $totalExpense,
+            'Salary Day' => $salaryDay,
+            'Categories Expenses' => $total_categories,
+            'Auropayed Expenses' => $fixedExpense,
+        ];
+
         $validated = $request->validate([
             'name' => 'required|min:3',
             'amount' => 'required|numeric',
@@ -118,7 +137,14 @@ class ExpenseController extends Controller
         unset($validated['category']);
 
         Expense::create($validated);
-        return redirect()->back()->with('success', 'expense added');
+
+        // dd($array);
+        $ai_insight = $this->callApi($array);
+        // dd($request->all());
+
+        // dd($ai_insight);
+
+        return redirect()->back()->with(['success' => 'expense added', 'ai_insight' => $ai_insight]);
     }
 
     /**
