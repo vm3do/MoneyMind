@@ -218,13 +218,13 @@
                                             </div>
                                             <div class="flex gap-1">
                                                 <button onclick="fillModal(this)" x-data @click="$dispatch('open-modal', 'edit-autopay')" class="p-2 hover:bg-[#FF6B6B]/10 rounded-lg transition-colors"
-                                                    data-id="{{$expense->id}}"
-                                                    data-name="{{$expense->name}}"
-                                                    data-amount="{{$expense->amount}}"
-                                                    data-date="{{$expense->date}}"
-                                                    data-category="{{$expense->category->name}}"
-                                                    data-is-recurring="{{$expense->is_recurring}}"
-                                                    data-frequency="{{$expense->frequecy}}"
+                                                    data-id="{{$autopay->id}}"
+                                                    data-name="{{$autopay->name}}"
+                                                    data-amount="{{$autopay->amount}}"
+                                                    data-date="{{$autopay->date}}"
+                                                    data-category="{{$autopay->category->id}}"
+                                                    data-is-recurring="{{$autopay->is_recurring}}"
+                                                    data-frequency="{{$autopay->frequency}}"
                                                 >
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -334,9 +334,9 @@
                                                     data-name="{{$expense->name}}"
                                                     data-amount="{{$expense->amount}}"
                                                     data-date="{{$expense->date}}"
-                                                    data-category="{{$expense->category->name}}"
+                                                    data-category="{{$expense->category->id}}"
                                                     data-is-recurring="{{$expense->is_recurring}}"
-                                                    data-frequency="{{$expense->frequecy}}"
+                                                    data-frequency="{{$expense->frequency}}"
                                                     >
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -552,7 +552,8 @@
                 class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
                 @click.away="show = false">
 
-                <form action="{{route('expenses.store')}}" method="POST" class="p-6">
+                <form id="edit-form" method="POST" class="p-6">
+                    @method('PUT')
                     @csrf
                     <div class="space-y-6">
                         <!-- Modal Header -->
@@ -571,10 +572,10 @@
                         <div class="space-y-5">
                             <!-- Expense Name -->
                             <div>
-                                <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Expense
+                                <label for="edit-name" class="block text-sm font-medium text-slate-700 mb-1">Expense
                                     Name</label>
                                 <div class="relative">
-                                    <input type="text" name="name" id="name" required
+                                    <input type="text" name="name" id="edit-name" required
                                         placeholder="Enter expense name"
                                         class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
                                 </div>
@@ -582,10 +583,10 @@
 
                             <!-- Amount -->
                             <div>
-                                <label for="amount" class="block text-sm font-medium text-slate-700 mb-1">Amount
+                                <label for="edit-amount" class="block text-sm font-medium text-slate-700 mb-1">Amount
                                     (DH)</label>
                                 <div class="relative">
-                                    <input type="number" name="amount" id="amount" required step="0.01"
+                                    <input type="number" name="amount" id="edit-amount" required step="0.01"
                                         placeholder="0.00"
                                         class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
@@ -596,10 +597,10 @@
 
                             <!-- Category -->
                             <div>
-                                <label for="category"
+                                <label for="edit-category"
                                     class="block text-sm font-medium text-slate-700 mb-1">Category</label>
                                 <div class="relative">
-                                    <select name="category" id="category" required
+                                    <select name="category" id="edit-category" required
                                         class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20 appearance-none">
                                         <option value="" disabled selected>Select a category</option>
                                         @foreach ($categories as $category)
@@ -618,10 +619,10 @@
 
                             <!-- Date -->
                             <div>
-                                <label for="date"
+                                <label for="edit-date"
                                     class="block text-sm font-medium text-slate-700 mb-1">Date</label>
                                 <div class="relative">
-                                    <input type="date" name="date" id="date" required
+                                    <input type="date" name="date" id="edit-date" required
                                         class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
                                 </div>
                             </div>
@@ -660,7 +661,7 @@
                                     <label class="block text-sm font-medium text-slate-700">Payment Frequency</label>
                                     <div class="grid grid-cols-3 gap-3">
                                         <label class="relative">
-                                            <input type="radio" name="frequency" value="daily"
+                                            <input type="radio" name="edit-frequency" value="daily"
                                                 class="peer sr-only">
                                             <div
                                                 class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
@@ -668,15 +669,15 @@
                                             </div>
                                         </label>
                                         <label class="relative">
-                                            <input type="radio" name="frequency" value="monthly"
-                                                class="peer sr-only" checked>
+                                            <input type="radio" name="edit-frequency" value="monthly"
+                                                class="peer sr-only">
                                             <div
                                                 class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
                                                 Monthly
                                             </div>
                                         </label>
                                         <label class="relative">
-                                            <input type="radio" name="frequency" value="yearly"
+                                            <input type="radio" name="edit-frequency" value="yearly"
                                                 class="peer sr-only">
                                             <div
                                                 class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
@@ -706,13 +707,19 @@
             document.getElementById('rangeValue').textContent = document.getElementById('rangeInput').value + '%'
         })
 
-        function fillForm(button){
-            document.getElementById('test').value = button.getAttribute('data-name');
-            document.getElementById('test').value = button.getAttribute('data-amount');
-            document.getElementById('test').value = button.getAttribute('data-date');
-            document.getElementById('test').value = button.getAttribute('data-category');
-            document.getElementById('test').value = button.getAttribute('data-is-recurring');
-            document.getElementById('test').value = button.getAttribute('data-is-frequency');
+        function fillModal(button){
+            document.getElementById('edit-name').value = button.getAttribute('data-name');
+            document.getElementById('edit-amount').value = button.getAttribute('data-amount');
+            document.getElementById('edit-date').value = button.getAttribute('data-date');
+            document.getElementById('edit-category').value = button.getAttribute('data-category');
+            
+            let radios = document.getElementsByName('edit-frequency');
+
+            Array.from(radios).forEach(radio => {
+        if (radio.value == button.getAttribute('data-frequency')) {
+            radio.checked = true;
+        }
+    });
 
             let id = button.getAttribute('data-id');
 

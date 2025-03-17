@@ -81,8 +81,26 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, Expense $expense)
     {
-        Expense::findOrFail($expense);
-        Expense::updated($request->all());
+
+        // dd([$request, $expense]);
+        $validated = $request->validate([
+            'name' => 'required|min:3',
+            'amount' => 'required|numeric',
+            'category' => 'required|integer',
+            'date' => 'required|date',
+            'is_recurring' => 'required|boolean',
+            'edit-frequency' => 'nullable|string|in:monthly,yearly,daily',
+        ]);
+
+        $validated['category_id'] = $validated['category'];
+        $validated['frequency'] = $validated['edit-frequency'];
+        unset($validated['category']);
+        unset($validated['edit-frequency']);
+        $validated['user_id'] = auth()->id();
+
+        $expense->update($validated);
+
+        return redirect()->back()->with('success', 'updated is done');
     }
 
     /**
