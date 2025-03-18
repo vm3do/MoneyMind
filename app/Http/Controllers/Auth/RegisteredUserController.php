@@ -57,6 +57,6 @@ class RegisteredUserController extends Controller
         } else {
             return redirect(route('expenses.index', absolute: false));
         }
-
+        
     }
 }
