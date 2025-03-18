@@ -41,7 +41,7 @@ Route::delete('/dashboard/category/destroy/{category}', [CategoryController::cla
 Route::get('/expenses', [ExpenseController::class, 'index'])->name('expenses.index');
 Route::post('/expenses', [ExpenseController::class, 'store'])->name('expenses.store');
 Route::put('/expenses/update/{expense}', [ExpenseController::class, 'update']);
-Route::delete('/expenses/delete/{id}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
+Route::delete('/expenses/delete/{expense}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
 
 Route::post('/expenses/alert', [AlertController::class, 'store'])->name('alert.store');
 Route::put('/expenses/alert/{id}', [AlertController::class, 'update'])->name('alert.update');
