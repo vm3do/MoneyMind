@@ -93,8 +93,8 @@
                             </span>
                         </div>
                         <div class="space-y-1">
-                            <p class="text-slate-500 text-sm">Variable Expenses</p>
-                            <p class="text-2xl font-bold text-slate-800">{{$variableExpense}} DH</p>
+                            <p class="text-slate-500 text-sm">Balance</p>
+                            <p class="text-2xl font-bold text-slate-800">{{$balance}} DH</p>
                             <span class="text-xs font-medium text-slate-500">
                                 this month
                             </span>

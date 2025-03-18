@@ -32,6 +32,7 @@ class ExpenseController extends Controller
         $salary = User::where('id', FacadesAuth::user()->id)->first()->salary;
         $fixedExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', true)->sum('amount');
         $variableExpense = Expense::where('user_id', FacadesAuth::user()->id)->where('is_recurring', false)->whereBetween('date', [$start_date, $end_date])->sum('amount');
+        $balance = auth()->user()->balance;
 
         $expense_categories = auth()->user()->expenses()
                                         ->join('categories', 'expenses.category_id', '=', 'categories.id')
@@ -49,7 +50,7 @@ class ExpenseController extends Controller
 
 
 
-        return view('user.expenses', compact('alert', 'categories', 'totalExpense', 'salary', 'fixedExpense', 'variableExpense', 'expenses', 'autopays'));
+        return view('user.expenses', compact('alert', 'categories', 'totalExpense', 'salary', 'fixedExpense', 'variableExpense', 'expenses', 'autopays', 'balance'));
     }
 
     public function callApi($array)
@@ -137,6 +138,9 @@ class ExpenseController extends Controller
         unset($validated['category']);
 
         Expense::create($validated);
+        $user = auth()->user();
+        $user->balance -= $validated['amount'];
+        $user->save();
 
         // dd($array);
         $ai_insight = $this->callApi($array);
