@@ -42,7 +42,10 @@ class SalaryMail extends Mailable
     {
         return new Content(
             markdown: 'mail.salary-mail',
-        )->with(['user', 'salary'], [$this->user->name, $this->user->salary ]);
+            with: [
+                'user' => $this->user
+            ],
+        );
     }
 
     /**

@@ -19,7 +19,7 @@ class SalaryMailJob implements ShouldQueue
 
     public function __construct($user)
     {
-        $this->user = $user
+        $this->user = $user;
     }
 
     /**
@@ -27,6 +27,6 @@ class SalaryMailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->user)->send(new SalaryMail($this->user))
+        Mail::to('mailtrap@test.com')->send(new SalaryMail($this->user));
     }
 }

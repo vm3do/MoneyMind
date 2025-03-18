@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SalaryMailJob;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -33,6 +34,8 @@ class UpdateBalance extends Command
         foreach($users as $user){
             $user->balance += $user->salary;
             $user->save();
+
+            SalaryMailJob::dispatch($user);
         }
 
         return info('Balance is updated');

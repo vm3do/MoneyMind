@@ -1,11 +1,7 @@
 <x-mail::message>
 # Introduction
 
-The body of your message.
-
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+Your salary of {{$user->salary}} has been deposited
 
 Thanks,<br>
 {{ config('app.name') }}
