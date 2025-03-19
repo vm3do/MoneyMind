@@ -79,19 +79,26 @@ class StatisticController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+
+        if($id != auth()->id()){
+            abort(403, 'test');
+        }
+
+        $validated = $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'salary_date' => 'numeric|min:1|max:31',
+        ]);
+
+
+        auth()->user()->salary = $validated['amount'];
+        auth()->user()->salary_date = $validated['salary_date'];
+        auth()->user()->save();
+
+        return redirect()->back()->with('success', 'salary info updated successfully');
     }
 
     /**

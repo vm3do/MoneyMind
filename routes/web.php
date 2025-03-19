@@ -47,7 +47,7 @@ Route::post('/expenses/alert', [AlertController::class, 'store'])->name('alert.s
 Route::put('/expenses/alert/{id}', [AlertController::class, 'update'])->name('alert.update');
 
 Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics.index');
-// Route::get('/wishlist', [ExpenseController::class, 'index'])->name('wishlist.index');
+Route::put('/statistics/update/{id}', [StatisticController::class, 'update']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

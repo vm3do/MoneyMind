@@ -151,20 +151,19 @@
                         <p class="text-slate-500 text-sm">Alltime breakdown</p>
                     </div>
                 </div>
-                <select class="px-3 py-1.5 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 text-[#FF6B6B] text-sm font-medium rounded-lg border border-[#FF6B6B]/20 focus:outline-none">
-                    <option>This Month</option>
-                    <option>Last Month</option>
-                    <option>Last 3 Months</option>
-                </select>
+                
             </div>
             <canvas id="categoryChart" class="w-full h-[400px]"></canvas>
         </div>
     </div>
 
+    
+
     <!-- Right Column with Salary Settings and Trend Chart -->
     <div class="flex flex-col gap-6">
         <!-- Salary Settings Card -->
         <div class="relative group">
+            
             <div class="absolute inset-0 bg-gradient-to-br from-[#FF6B6B]/30 via-[#FF8E53]/30 to-[#FF8E53]/30 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl rounded-2xl"></div>
             <div class="relative bg-gradient-to-br from-white via-slate-50 to-white rounded-2xl shadow-lg p-6 border border-slate-200/60">
                 <div class="flex justify-between items-center mb-6">
@@ -179,12 +178,24 @@
                             <p class="text-slate-500 text-sm">Monthly income details</p>
                         </div>
                     </div>
-                    <button class="group/edit p-2 hover:bg-[#FF6B6B]/10 rounded-lg transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-[#FF6B6B]">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                        </svg>
-                    </button>
+                    
+                        <button x-data onclick="fillForm(this)"  @click="$dispatch('open-modal', 'edit-salary')" class="group/edit p-2 hover:bg-[#FF6B6B]/10 rounded-lg transition-colors"
+                                data-amount = {{$salary}}
+                                data-day = {{$salaryDay}}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-[#FF6B6B]">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                            </svg>
+                        </button>
                 </div>
+                @if ($errors->any())
+    <div class="text-red-500 bg-red-100 p-2 mb-2 rounded-md">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
                 <div class="grid grid-cols-2 gap-6">
                     <div class="p-4 rounded-xl bg-gradient-to-br from-[#FF6B6B]/10 to-[#FF8E53]/10 border border-[#FF6B6B]/20">
                         <p class="text-slate-500 text-sm mb-2">Monthly Salary</p>
@@ -214,20 +225,76 @@
                             <p class="text-slate-500 text-sm">Per Month</p>
                         </div>
                     </div>
-                    <select class="px-3 py-1.5 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 text-[#FF6B6B] text-sm font-medium rounded-lg border border-[#FF6B6B]/20 focus:outline-none">
-                        <option>Last 6 months</option>
-                        <option>Last year</option>
-                        <option>All time</option>
-                    </select>
+                    
                 </div>
                 <canvas id="trendChart" class="w-full"></canvas>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Edit Category Modal -->
+<div x-data="{ show: false }" @open-modal.window="show = ($event.detail === 'edit-salary')" @close-modal.window="show = false" x-show="show" class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
+    <div x-show="show" class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div x-show="show" class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg" @click.away="show = false">
+            <form id="edit-form" method="POST" class="p-6">
+                @method('PUT')
+                @csrf
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+                        <h3 class="text-lg font-semibold text-slate-800">Edit Salary</h3>
+                        <button type="button" @click="show = false" class="text-slate-400 hover:text-slate-500">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Amount -->
+                    <div>
+                        <label for="amount" class="block text-sm font-medium text-slate-700 mb-1">Amount
+                            (DH)</label>
+                        <div class="relative">
+                            <input type="number" name="amount" id="amount" required step="1"
+                                placeholder="0.00"
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
+                            
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="date"
+                            class="block text-sm font-medium text-slate-700 mb-1">Date</label>
+                        <div class="relative">
+                            <input type="number" min="1" max="31" name="salary_date" id="date" required
+                                class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="{{auth()->id()}}">
+                    <div class="pt-2">
+                        <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg transition-all duration-200 font-medium">
+                            Edit Salary
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
     </main>
 
     <script>
+
+        function fillForm(button){
+            document.getElementById('amount').value = button.getAttribute('data-amount')
+            document.getElementById('date').value = button.getAttribute('data-day')
+        }
+
+        let form = document.getElementById('edit-form')
+            let id = document.querySelector('[name="id"]').value
+
+            form.action = `/statistics/update/${id}`
 
         let categories = {!! $categories !!}
         let total = {!! $categories_total !!}
