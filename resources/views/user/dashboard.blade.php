@@ -148,7 +148,7 @@
                     </span>
                     <div>
                         <h3 class="text-slate-800 text-lg font-bold">Spending Categories</h3>
-                        <p class="text-slate-500 text-sm">Monthly breakdown</p>
+                        <p class="text-slate-500 text-sm">Alltime breakdown</p>
                     </div>
                 </div>
                 <select class="px-3 py-1.5 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 text-[#FF6B6B] text-sm font-medium rounded-lg border border-[#FF6B6B]/20 focus:outline-none">
@@ -188,11 +188,11 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="p-4 rounded-xl bg-gradient-to-br from-[#FF6B6B]/10 to-[#FF8E53]/10 border border-[#FF6B6B]/20">
                         <p class="text-slate-500 text-sm mb-2">Monthly Salary</p>
-                        <p class="text-2xl font-bold text-slate-800">5,000 DH</p>
+                        <p class="text-2xl font-bold text-slate-800">{{$salary}} DH</p>
                     </div>
                     <div class="p-4 rounded-xl bg-gradient-to-br from-[#FF6B6B]/10 to-[#FF8E53]/10 border border-[#FF6B6B]/20">
-                        <p class="text-slate-500 text-sm mb-2">Payment Date</p>
-                        <p class="text-2xl font-bold text-slate-800">10th</p>
+                        <p class="text-slate-500 text-sm mb-2">Payment Day</p>
+                        <p class="text-2xl font-bold text-slate-800">{{$salaryDay}}</p>
                     </div>
                 </div>
             </div>
