@@ -8,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --accent: #FF660E;
@@ -130,14 +131,16 @@
                             <label class="block text-sm font-medium text-slate-700">Alert Threshold (% of
                                 Salary)</label>
                             <div class="flex items-center gap-4">
-                                <form action="{{ route('alert.update', $alert->id) }}" method="POST" id="alert-form" class="w-full">
+                                <form action="{{ route('alert.update', $alert->id) }}" method="POST" id="alert-form"
+                                    class="w-full">
                                     @csrf
                                     @method('PUT')
                                     <input type="range" id="rangeInput"
-                                    class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF6B6B]"
-                                    min="0" max="100" name="percentage" value="{{$alert->percentage}}">
+                                        class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF6B6B]"
+                                        min="0" max="100" name="percentage" value="{{$alert->percentage}}">
                                 </form>
-                                <span id="rangeValue" class="text-sm font-medium text-slate-800 min-w-[3rem]">{{$alert->percentage}}%</span>
+                                <span id="rangeValue"
+                                    class="text-sm font-medium text-slate-800 min-w-[3rem]">{{$alert->percentage}}%</span>
                             </div>
                         </div>
 
@@ -153,13 +156,19 @@
         <!-- Smart Insights Section -->
         <div class="mb-8">
             <div class="relative group">
-                <div class="absolute inset-0 bg-gradient-to-br from-[#4ECDC4]/30 via-[#45B7D1]/30 to-[#2C3E50]/30 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl rounded-2xl"></div>
-                <div class="relative bg-gradient-to-br from-white via-slate-50 to-white rounded-2xl shadow-lg p-8 border border-slate-200/60 backdrop-blur-sm">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-[#4ECDC4]/30 via-[#45B7D1]/30 to-[#2C3E50]/30 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl rounded-2xl">
+                </div>
+                <div
+                    class="relative bg-gradient-to-br from-white via-slate-50 to-white rounded-2xl shadow-lg p-8 border border-slate-200/60 backdrop-blur-sm">
                     <div class="flex justify-between items-center mb-6">
                         <div class="flex items-center gap-3">
-                            <span class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            <span
+                                class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-6 h-6 text-white">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                                 </svg>
                             </span>
                             <div>
@@ -167,29 +176,36 @@
                                 <p class="text-slate-500 text-sm">AI-powered financial analysis</p>
                             </div>
                         </div>
-                        <span class="px-4 py-1.5 bg-gradient-to-r from-[#4ECDC4]/10 to-[#45B7D1]/10 text-[#4ECDC4] text-sm font-medium rounded-full border border-[#4ECDC4]/20">Updated today</span>
+                        <span
+                            class="px-4 py-1.5 bg-gradient-to-r from-[#4ECDC4]/10 to-[#45B7D1]/10 text-[#4ECDC4] text-sm font-medium rounded-full border border-[#4ECDC4]/20">Updated
+                            today</span>
                     </div>
 
                     <div class="flex items-start gap-6">
                         <div class="flex-1">
-                            <div class="p-6 rounded-xl bg-gradient-to-br from-[#4ECDC4]/5 to-[#45B7D1]/5 border border-[#4ECDC4]/20">
-                                <p class="text-slate-600 leading-relaxed">
+                            <div
+                                class="p-6 rounded-xl bg-gradient-to-br from-[#4ECDC4]/5 to-[#45B7D1]/5 border border-[#4ECDC4]/20">
+                                <p id="ai_insight" class="text-slate-600 leading-relaxed">
                                     {{session('ai_insight') ?? 'no smart insight available right now ! try adding an expense or wait until the next one'}}
                                 </p>
                                 <div class="flex items-center gap-4 mt-4">
-                                    <button class="px-4 py-2 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white text-sm font-medium rounded-lg shadow-lg shadow-teal-500/30 hover:shadow-teal-500/40 transition-all duration-300">
+                                    <button
+                                        class="px-4 py-2 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white text-sm font-medium rounded-lg shadow-lg shadow-teal-500/30 hover:shadow-teal-500/40 transition-all duration-300">
                                         Hope this helped
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="hidden lg:block w-48 h-48">
-                            <div class="w-full h-full rounded-full bg-gradient-to-br from-[#4ECDC4]/10 to-[#45B7D1]/10 border border-[#4ECDC4]/20 flex items-center justify-center">
-                                <div class="w-36 h-36 rounded-full bg-gradient-to-br from-[#4ECDC4]/20 to-[#45B7D1]/20 border border-[#4ECDC4]/30 flex items-center justify-center">
-                                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30 flex items-center justify-center text-white">
+                            <div
+                                class="w-full h-full rounded-full bg-gradient-to-br from-[#4ECDC4]/10 to-[#45B7D1]/10 border border-[#4ECDC4]/20 flex items-center justify-center">
+                                <div
+                                    class="w-36 h-36 rounded-full bg-gradient-to-br from-[#4ECDC4]/20 to-[#45B7D1]/20 border border-[#4ECDC4]/30 flex items-center justify-center">
+                                    <div
+                                        class="w-24 h-24 rounded-full bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30 flex items-center justify-center text-white">
                                         <div class="text-center">
                                             <div class="text-2xl font-bold">AI</div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -212,8 +228,8 @@
                         <div class="flex items-start gap-3">
                             <span
                                 class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6B6B] to-[#FF8E53] shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-6 h-6 text-white">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                                 </svg>
@@ -249,8 +265,8 @@
                                             <div class="flex items-center gap-4">
                                                 <div
                                                     class="w-12 h-12 rounded-xl bg-[#FF6B6B]/10 flex items-center justify-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="1.5" stroke="currentColor"
                                                         class="w-6 h-6 text-[#FF6B6B]">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 0 1 0-.255c.007-.378-.138-.75-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281Z" />
@@ -259,7 +275,8 @@
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <h4 class="text-slate-800 font-semibold">{{ucwords($autopay->name)}}</h4>
+                                                    <h4 class="text-slate-800 font-semibold">{{ucwords($autopay->name)}}
+                                                    </h4>
                                                     <span
                                                         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FF6B6B]/10 text-[#FF6B6B] border border-[#FF6B6B]/20">
                                                         High Priority
@@ -267,17 +284,16 @@
                                                 </div>
                                             </div>
                                             <div class="flex gap-1">
-                                                <button onclick="fillModal(this)" x-data @click="$dispatch('open-modal', 'edit-autopay')" class="p-2 hover:bg-[#FF6B6B]/10 rounded-lg transition-colors"
-                                                    data-id="{{$autopay->id}}"
-                                                    data-name="{{$autopay->name}}"
-                                                    data-amount="{{$autopay->amount}}"
-                                                    data-date="{{$autopay->date}}"
+                                                <button onclick="fillModal(this)" x-data
+                                                    @click="$dispatch('open-modal', 'edit-autopay')"
+                                                    class="p-2 hover:bg-[#FF6B6B]/10 rounded-lg transition-colors"
+                                                    data-id="{{$autopay->id}}" data-name="{{$autopay->name}}"
+                                                    data-amount="{{$autopay->amount}}" data-date="{{$autopay->date}}"
                                                     data-category="{{$autopay->category->id}}"
                                                     data-is-recurring="{{$autopay->is_recurring}}"
-                                                    data-frequency="{{$autopay->frequency}}"
-                                                >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    data-frequency="{{$autopay->frequency}}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="1.5" stroke="currentColor"
                                                         class="w-4 h-4 text-[#FF6B6B]">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
@@ -286,7 +302,8 @@
                                                 <form action="{{route('expenses.destroy', $autopay)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                                    <button type="submit"
+                                                        class="p-2 hover:bg-red-50 rounded-lg transition-colors">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                             class="w-4 h-4 text-red-500">
@@ -314,10 +331,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             @endforeach
 
-                            
+
                         </div>
                     </div>
                 </div>
@@ -336,8 +353,8 @@
                         <div class="flex items-start gap-3">
                             <span
                                 class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30 group-hover:scale-110 transition-transform duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-6 h-6 text-white">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                                 </svg>
@@ -349,9 +366,8 @@
                         </div>
                         <button x-data @click="$dispatch('open-modal', 'add-expense')"
                             class="group px-4 sm:px-6 py-2.5 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-200 flex items-center gap-2 font-medium">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor"
-                                class="w-5 h-5 transition-transform group-hover:rotate-90">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" class="w-5 h-5 transition-transform group-hover:rotate-90">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                             <span class="hidden sm:inline">Add Expense</span>
@@ -378,12 +394,14 @@
                                     <tr class="hover:bg-[--accent-light]/30 transition-colors">
                                         <td class="py-4 px-4">
                                             <div class="flex items-center gap-3">
-                                                <span class="text-sm font-medium text-[--neutral-900]">{{$expense->name}}</span>
+                                                <span
+                                                    class="text-sm font-medium text-[--neutral-900]">{{$expense->name}}</span>
                                             </div>
                                         </td>
                                         <td class="py-4 px-4">
                                             <div class="flex items-center gap-3">
-                                                <span class="text-sm font-medium text-[--neutral-900]">{{$expense->date}}</span>
+                                                <span
+                                                    class="text-sm font-medium text-[--neutral-900]">{{$expense->date}}</span>
                                             </div>
                                         </td>
                                         <td class="py-4 px-4">
@@ -393,31 +411,32 @@
                                             </span>
                                         </td>
                                         <td class="py-4 px-4">
-                                            <span class="text-sm font-medium text-[--neutral-900]">{{$expense->amount}} DH</span>
+                                            <span class="text-sm font-medium text-[--neutral-900]">{{$expense->amount}}
+                                                DH</span>
                                         </td>
                                         <td class="py-4 px-4">
-                                            <div class="flex items-center justify-end gap-2"  >
-                                                <button onclick="fillModal(this)" x-data @click="$dispatch('open-modal', 'edit-expense')" class="p-2 hover:bg-[--accent-light] rounded-lg transition-colors"
-                                                    data-id="{{$expense->id}}"
-                                                    data-name="{{$expense->name}}"
-                                                    data-amount="{{$expense->amount}}"
-                                                    data-date="{{$expense->date}}"
+                                            <div class="flex items-center justify-end gap-2">
+                                                <button onclick="fillModal(this)" x-data
+                                                    @click="$dispatch('open-modal', 'edit-expense')"
+                                                    class="p-2 hover:bg-[--accent-light] rounded-lg transition-colors"
+                                                    data-id="{{$expense->id}}" data-name="{{$expense->name}}"
+                                                    data-amount="{{$expense->amount}}" data-date="{{$expense->date}}"
                                                     data-category="{{$expense->category->id}}"
                                                     data-is-recurring="{{$expense->is_recurring}}"
-                                                    data-frequency="{{$expense->frequency}}"
-                                                    >
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    data-frequency="{{$expense->frequency}}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="1.5" stroke="currentColor"
                                                         class="w-5 h-5 text-[--accent]">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                                                     </svg>
                                                 </button>
-                                                
+
                                                 <form action="{{route('expenses.destroy', $expense)}}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                                    <button type="submit"
+                                                        class="p-2 hover:bg-red-50 rounded-lg transition-colors">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                             class="w-5 h-5 text-red-500">
@@ -429,7 +448,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    
+
                                 @endforeach
 
                             </tbody>
@@ -444,8 +463,7 @@
     <div x-data="{
         show: false,
         isAutopay: false
-    }"
-        @open-modal.window="show = ($event.detail === 'add-expense' || $event.detail === 'add-autopay'); isAutopay = ($event.detail === 'add-autopay')"
+    }" @open-modal.window="show = ($event.detail === 'add-expense' || $event.detail === 'add-autopay'); isAutopay = ($event.detail === 'add-autopay')"
         @close-modal.window="show = false" @keydown.escape.window="show = false" x-show="show"
         class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
 
@@ -480,8 +498,7 @@
                                 <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Expense
                                     Name</label>
                                 <div class="relative">
-                                    <input type="text" name="name" id="name" required
-                                        placeholder="Enter expense name"
+                                    <input type="text" name="name" id="name" required placeholder="Enter expense name"
                                         class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
                                 </div>
                             </div>
@@ -510,7 +527,7 @@
                                         <option value="" disabled selected>Select a category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach  
+                                        @endforeach
                                     </select>
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400"
@@ -524,8 +541,7 @@
 
                             <!-- Date -->
                             <div>
-                                <label for="date"
-                                    class="block text-sm font-medium text-slate-700 mb-1">Date</label>
+                                <label for="date" class="block text-sm font-medium text-slate-700 mb-1">Date</label>
                                 <div class="relative">
                                     <input type="date" name="date" id="date" required
                                         class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-slate-600 text-sm transition-all focus:outline-none focus:border-[#4ECDC4] focus:ring-2 focus:ring-[#4ECDC4]/20">
@@ -540,8 +556,7 @@
                                     <label class="block text-sm font-medium text-slate-700 mb-2">Autopay</label>
                                     <div class="flex gap-4">
                                         <label class="relative flex items-center">
-                                            <input type="radio" name="is_recurring" value="1"
-                                                x-bind:checked="isAutopay"
+                                            <input type="radio" name="is_recurring" value="1" x-bind:checked="isAutopay"
                                                 @change="showFrequency = $event.target.value === '1'"
                                                 class="peer sr-only">
                                             <div
@@ -566,24 +581,22 @@
                                     <label class="block text-sm font-medium text-slate-700">Payment Frequency</label>
                                     <div class="grid grid-cols-3 gap-3">
                                         <label class="relative">
-                                            <input type="radio" name="frequency" value="daily"
-                                                class="peer sr-only">
+                                            <input type="radio" name="frequency" value="daily" class="peer sr-only">
                                             <div
                                                 class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
                                                 Daily
                                             </div>
                                         </label>
                                         <label class="relative">
-                                            <input type="radio" name="frequency" value="monthly"
-                                                class="peer sr-only" checked>
+                                            <input type="radio" name="frequency" value="monthly" class="peer sr-only"
+                                                checked>
                                             <div
                                                 class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
                                                 Monthly
                                             </div>
                                         </label>
                                         <label class="relative">
-                                            <input type="radio" name="frequency" value="yearly"
-                                                class="peer sr-only">
+                                            <input type="radio" name="frequency" value="yearly" class="peer sr-only">
                                             <div
                                                 class="w-full p-2.5 bg-white border-2 border-slate-200 rounded-xl text-center text-sm font-medium text-slate-600 cursor-pointer transition-all peer-checked:border-[#4ECDC4] peer-checked:bg-[#4ECDC4]/5 hover:border-[#4ECDC4]/50">
                                                 Yearly
@@ -611,8 +624,7 @@
     <div x-data="{
         show: false,
         isAutopay: false
-    }"
-        @open-modal.window="show = ($event.detail === 'edit-expense' || $event.detail === 'edit-autopay'); isAutopay = ($event.detail === 'edit-autopay')"
+    }" @open-modal.window="show = ($event.detail === 'edit-expense' || $event.detail === 'edit-autopay'); isAutopay = ($event.detail === 'edit-autopay')"
         @close-modal.window="show = false" @keydown.escape.window="show = false" x-show="show"
         class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
 
@@ -678,7 +690,7 @@
                                         <option value="" disabled selected>Select a category</option>
                                         @foreach ($categories as $category)
                                             <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach  
+                                        @endforeach
                                     </select>
                                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400"
@@ -708,8 +720,7 @@
                                     <label class="block text-sm font-medium text-slate-700 mb-2">Autopay</label>
                                     <div class="flex gap-4">
                                         <label class="relative flex items-center">
-                                            <input type="radio" name="is_recurring" value="1"
-                                                x-bind:checked="isAutopay"
+                                            <input type="radio" name="is_recurring" value="1" x-bind:checked="isAutopay"
                                                 @change="showFrequency = $event.target.value === '1'"
                                                 class="peer sr-only">
                                             <div
@@ -775,24 +786,48 @@
         </div>
     </div>
 
+    {{-- Alert Modal --}}
+
+    <!-- Blurred Background Overlay -->
+    <div id="alert-modal" class="fixed inset-0 bg-black/40 backdrop-blur-md items-center justify-center p-4 flex">
+        <!-- Modal Container -->
+        <div
+            class="relative bg-gradient-to-br from-red-500 via-red-600 to-red-700 text-white shadow-2xl rounded-2xl p-6 max-w-md w-full">
+
+            <!-- Modal Content -->
+            <h2 class="text-xl font-bold mb-2">Alert</h2>
+            <p class="text-sm text-white/90">
+                This is a beautifully styled modal with a reddish theme. Modify it to fit your needs.
+            </p>
+
+            <!-- Action Button -->
+            <div class="mt-4 flex justify-end">
+                <button onclick="toggleAlert()" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         document.getElementById('rangeInput').addEventListener('input', () => {
             document.getElementById('rangeValue').textContent = document.getElementById('rangeInput').value + '%'
         })
 
-        function fillModal(button){
+        function fillModal(button) {
             document.getElementById('edit-name').value = button.getAttribute('data-name');
             document.getElementById('edit-amount').value = button.getAttribute('data-amount');
             document.getElementById('edit-date').value = button.getAttribute('data-date');
             document.getElementById('edit-category').value = button.getAttribute('data-category');
-            
+
             let radios = document.getElementsByName('edit-frequency');
 
             Array.from(radios).forEach(radio => {
-        if (radio.value == button.getAttribute('data-frequency')) {
-            radio.checked = true;
-        }
-    });
+                if (radio.value == button.getAttribute('data-frequency')) {
+                    radio.checked = true;
+                }
+            });
 
             let id = button.getAttribute('data-id');
 
@@ -800,7 +835,26 @@
 
             form.action = `/expenses/update/${id}`
         }
-    </script> 
+
+        // ai localstorage setting
+
+        let ai_insight = @json(session('ai_insight'));
+        if (ai_insight) {
+            localStorage.setItem('ai_insight', ai_insight)
+        }
+
+        console.log(localStorage.getItem('ai_insight'))
+
+        if (localStorage.getItem('ai_insight')) {
+            document.getElementById('ai_insight').textContent = localStorage.getItem('ai_insight');
+        }
+
+        // alert toggle
+        function toggleAlert(){
+            document.getElementById('alert-modal').classList.toggle('hidden')
+            document.getElementById('alert-modal').classList.toggle('flex')
+        }
+    </script>
 </body>
 
 </html>
