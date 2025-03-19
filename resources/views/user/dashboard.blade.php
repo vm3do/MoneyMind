@@ -228,6 +228,8 @@
     </main>
 
     <script>
+
+        let categories = {{!! $c !!}}
         function dashboard() {
             return {
                 init() {
