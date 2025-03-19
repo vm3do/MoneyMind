@@ -34,9 +34,24 @@ class StatisticController extends Controller
                                         ->selectRaw('categories.name as category, SUM(expenses.amount) as total')
                                         ->groupBy('categories.name')->get();
 
+        $monthly_expense = auth()->user()->expenses()
+                            ->selectRaw('MONTH(date) as month, YEAR(date) as year, SUM(amount) as monthly_total')
+                            ->groupBy('month', 'year')
+                            ->orderBY('year')
+                            ->get();
+
+        $monthly_expense = $monthly_expense->map(function($expense){
+            $expense->month_year = Carbon::createFromDate($expense->year, $expense->month, 1)->format('m-Y');
+            return $expense;
+        });
+
         $categories = json_encode($expense_categories->pluck('category'));
         $categories_total = json_encode($expense_categories->pluck('total'));
-        return view('user.dashboard', compact('totalExpense','salary','salaryDay' , 'fixedExpense', 'balance' ,'categories', 'categories_total')); 
+
+        $month_year = json_encode($monthly_expense->pluck('month_year'));
+        $month_total = json_encode($monthly_expense->pluck('monthly_total'));
+
+        return view('user.dashboard', compact('totalExpense','salary','salaryDay' , 'fixedExpense', 'balance' ,'categories', 'categories_total', 'month_year', 'month_total')); 
     }
 
     /**

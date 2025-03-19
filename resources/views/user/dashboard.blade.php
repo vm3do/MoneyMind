@@ -210,8 +210,8 @@
                             </svg>
                         </span>
                         <div>
-                            <h3 class="text-slate-800 text-lg font-bold">Monthly Trends</h3>
-                            <p class="text-slate-500 text-sm">Spending analysis</p>
+                            <h3 class="text-slate-800 text-lg font-bold">Total Expenses</h3>
+                            <p class="text-slate-500 text-sm">Per Month</p>
                         </div>
                     </div>
                     <select class="px-3 py-1.5 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 text-[#FF6B6B] text-sm font-medium rounded-lg border border-[#FF6B6B]/20 focus:outline-none">
@@ -231,6 +231,9 @@
 
         let categories = {!! $categories !!}
         let total = {!! $categories_total !!}
+
+        let month_year = {!! $month_year !!}
+        let month_total = {!! $month_total !!}
         console.log(categories)
         function dashboard() {
             return {
@@ -253,10 +256,10 @@
                     new Chart(trendCtx, {
                         type: 'line',
                         data: {
-                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                            labels: month_year,
                             datasets: [{
-                                label: 'Expenses',
-                                data: [1500, 1800, 1600, 1700, 1400, 1500],
+                                label: 'Expenses per Month',
+                                data: month_total,
                                 borderColor: '#FF660E',
                                 tension: 0.4,
                                 backgroundColor: 'rgba(255, 102, 14, 0.1)',
