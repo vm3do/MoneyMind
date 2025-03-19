@@ -18,8 +18,6 @@ class StatisticController extends Controller
     public function index()
     {
 
-        $categories = Category::all();
-
         $salaryDay = Auth::user()->salary_date;
         $start_date = Carbon::now()->month()->day($salaryDay);
         $end_date = Carbon::now()->addMonth()->day($salaryDay - 1);
@@ -37,7 +35,7 @@ class StatisticController extends Controller
 
         $categories = json_encode($expense_categories->pluck('category'));
         $categories_total = json_encode($expense_categories->pluck('total'));
-        return view('user.dashboard', compact('totalExpense')); 
+        return view('user.dashboard', compact('totalExpense','salary', 'fixedExpense', 'balance' ,'categories', 'categories_total')); 
     }
 
     /**

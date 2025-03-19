@@ -47,7 +47,7 @@
                 </div>
                 <div class="flex-1">
                     <p class="text-slate-500 text-sm font-medium">Available Balance</p>
-                    <p class="text-2xl font-bold text-slate-800 mt-1">12,560 DH</p>
+                    <p class="text-2xl font-bold text-slate-800 mt-1">{{$balance}} DH</p>
                     <span class="flex items-center gap-1 text-[#FF6B6B] text-sm mt-2 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 px-2 py-0.5 rounded-full border border-[#FF6B6B]/20 w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -71,7 +71,7 @@
                 </div>
                 <div class="flex-1">
                     <p class="text-slate-500 text-sm font-medium">Monthly Income</p>
-                    <p class="text-2xl font-bold text-slate-800 mt-1">5,240 DH</p>
+                    <p class="text-2xl font-bold text-slate-800 mt-1">{{$salary}} DH</p>
                     <span class="flex items-center gap-1 text-[#FF6B6B] text-sm mt-2 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 px-2 py-0.5 rounded-full border border-[#FF6B6B]/20 w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -95,7 +95,7 @@
                 </div>
                 <div class="flex-1">
                     <p class="text-slate-500 text-sm font-medium">Monthly Expenses</p>
-                    <p class="text-2xl font-bold text-slate-800 mt-1">3,890 DH</p>
+                    <p class="text-2xl font-bold text-slate-800 mt-1">{{$fixedExpense}} DH</p>
                     <span class="flex items-center gap-1 text-[#FF6B6B] text-sm mt-2 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 px-2 py-0.5 rounded-full border border-[#FF6B6B]/20 w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 4.5l-15 15m0 0h11.25m-11.25 0V8.25" />
@@ -119,7 +119,7 @@
                 </div>
                 <div class="flex-1">
                     <p class="text-slate-500 text-sm font-medium">Total Savings</p>
-                    <p class="text-2xl font-bold text-slate-800 mt-1">8,670 DH</p>
+                    <p class="text-2xl font-bold text-slate-800 mt-1">0 DH</p>
                     <span class="flex items-center gap-1 text-[#FF6B6B] text-sm mt-2 bg-gradient-to-r from-[#FF6B6B]/10 to-[#FF8E53]/10 px-2 py-0.5 rounded-full border border-[#FF6B6B]/20 w-fit">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
@@ -229,7 +229,9 @@
 
     <script>
 
-        let categories = {{!! $c !!}}
+        let categories = {!! $categories !!}
+        let total = {!! $categories_total !!}
+        console.log(categories)
         function dashboard() {
             return {
                 init() {
@@ -238,10 +240,10 @@
                     new Chart(categoryCtx, {
                         type: 'doughnut',
                         data: {
-                            labels: ['Food', 'Transport', 'Entertainment', 'Bills', 'Others'],
+                            labels: categories,
                             datasets: [{
-                                data: [300, 200, 150, 400, 100],
-                                backgroundColor: ['#6366F1', '#EF4444', '#10B981', '#F59E0B', '#4F5D75']
+                                data: total,
+                                backgroundColor: $colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#C9CBCF", "#8DFF57", "#FF5FA2", "#00C49F"]
                             }]
                         }
                     });
