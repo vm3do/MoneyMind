@@ -789,15 +789,14 @@
     {{-- Alert Modal --}}
 
     <!-- Blurred Background Overlay -->
-    <div id="alert-modal" class="fixed inset-0 bg-black/40 backdrop-blur-md items-center justify-center p-4 flex">
-        <!-- Modal Container -->
-        <div
-            class="relative bg-gradient-to-br from-red-500 via-red-600 to-red-700 text-white shadow-2xl rounded-2xl p-6 max-w-md w-full">
+    <div id="alert-modal" class="fixed inset-0 bg-black/40 backdrop-blur-md items-center justify-center p-4 hidden">
 
-            <!-- Modal Content -->
-            <h2 class="text-xl font-bold mb-2">Alert</h2>
+        <div
+            class="relative bg-gradient-to-br from-red-700 via-red-600 to-red-500 text-white shadow-2xl rounded-2xl p-6 max-w-md w-full">
+
+            <h2 class="text-xl font-bold mb-2">Alert !!</h2>
             <p class="text-sm text-white/90">
-                This is a beautifully styled modal with a reddish theme. Modify it to fit your needs.
+                You’ve reached <span class="font-bold">{{$alert->percentage}}%</span> of your budget for the month. It might be a good time to evaluate your spending and make adjustments."
             </p>
 
             <!-- Action Button -->
@@ -849,11 +848,24 @@
             document.getElementById('ai_insight').textContent = localStorage.getItem('ai_insight');
         }
 
+        
+        console.log(@json($salary));
+    console.log(@json($totalExpense));
+    console.log(@json($alert->percentage));
         // alert toggle
         function toggleAlert(){
             document.getElementById('alert-modal').classList.toggle('hidden')
             document.getElementById('alert-modal').classList.toggle('flex')
         }
+
+        let salary = {{$salary}}
+        let total_expense = {{$totalExpense}}
+        let alert_percentage = @json($alert->percentage)
+        
+        if((total_expense/salary) * 100 >= alert_percentage){
+            toggleAlert()
+        }
+
     </script>
 </body>
 
