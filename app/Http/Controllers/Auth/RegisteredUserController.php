@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         Alert::create(['user_id' => Auth::user()->id, 'percentage' => 50]);
 
-        if(Auth::user()->role == 'admin'){
+        if(auth()->user()->role == 'admin'){
             return redirect(route('dashboard', absolute: false));
         } else {
             return redirect(route('expenses.index', absolute: false));

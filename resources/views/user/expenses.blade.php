@@ -336,6 +336,9 @@
 
 
                         </div>
+                        <div class="mt-4">
+                            {{$autopays->links()}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -453,6 +456,9 @@
 
                             </tbody>
                         </table>
+                        <div class="mt-4">
+                            {{$expenses->links()}}
+                        </div>
                     </div>
                 </div>
             </div>

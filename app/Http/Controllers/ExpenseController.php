@@ -18,8 +18,8 @@ class ExpenseController extends Controller
 
     public function index()
     {
-        $expenses = auth()->user()->expenses->where('is_recurring', false);
-        $autopays = auth()->user()->expenses->where('is_recurring', true);
+        $expenses = auth()->user()->expenses()->where('is_recurring', false)->paginate(5);
+        $autopays = auth()->user()->expenses()->where('is_recurring', true)->paginate(2);
         $alert = Alert::where('user_id', FacadesAuth::user()->id)->first();
         // dd($alert->toArray());
         $categories = Category::all();
