@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <span
-                            class="px-4 py-1.5 bg-gradient-to-r from-[#4ECDC4]/10 to-[#45B7D1]/10 text-[#4ECDC4] text-sm font-medium rounded-full border border-[#4ECDC4]/20">Updated
+                            class="px-4 py-1.5 text-center bg-gradient-to-r from-[#4ECDC4]/10 to-[#45B7D1]/10 text-[#4ECDC4] text-sm font-medium rounded-full border border-[#4ECDC4]/20">Updated
                             today</span>
                     </div>
 
@@ -351,15 +351,13 @@
                     class="absolute inset-0 bg-gradient-to-br from-[#4ECDC4]/30 via-[#45B7D1]/30 to-[#2C3E50]/30 opacity-0 group-hover:opacity-100 transition-all duration-300 blur-xl rounded-2xl">
                 </div>
                 <div
-                    class="relative bg-gradient-to-br from-white via-slate-50 to-white rounded-2xl shadow-lg p-8 border border-slate-200/60">
-                    <div class="flex justify-between items-start mb-6">
+                    class="relative bg-gradient-to-br from-white via-slate-50 to-white rounded-2xl shadow-lg p-4 sm:p-8 border border-slate-200/60">
+                    <!-- Header Section -->
+                    <div class="flex justify-between items-start mb-6 flex-wrap gap-4">
                         <div class="flex items-start gap-3">
-                            <span
-                                class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30 group-hover:scale-110 transition-transform duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" class="w-6 h-6 text-white">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                            <span class="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ECDC4] to-[#45B7D1] shadow-lg shadow-teal-500/30 group-hover:scale-110 transition-transform duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-white">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
                                 </svg>
                             </span>
                             <div>
@@ -367,54 +365,91 @@
                                 <p class="text-slate-500 text-sm">Track your spending patterns</p>
                             </div>
                         </div>
-                        <button x-data @click="$dispatch('open-modal', 'add-expense')"
-                            class="group px-4 sm:px-6 py-2.5 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-200 flex items-center gap-2 font-medium">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                stroke="currentColor" class="w-5 h-5 transition-transform group-hover:rotate-90">
+                        <button x-data @click="$dispatch('open-modal', 'add-expense')" class="w-full sm:w-auto group px-4 sm:px-6 py-2.5 bg-gradient-to-r from-[#4ECDC4] to-[#45B7D1] text-white rounded-xl hover:shadow-lg hover:shadow-teal-500/30 transition-all duration-200 flex items-center justify-center gap-2 font-medium">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-transform group-hover:rotate-90">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
-                            <span class="hidden sm:inline">Add Expense</span>
+                            <span>Add Expense</span>
                         </button>
                     </div>
 
-                    <div class="overflow-x-auto">
+                    <!-- Mobile Expense Cards -->
+                    <div class="block sm:hidden">
+                        @foreach ($expenses as $expense)
+                            <div class="bg-white rounded-lg shadow-sm p-4 mb-4 border border-slate-100">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h4 class="font-medium text-slate-800">{{$expense->name}}</h4>
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#45B7D1] text-white mt-1">
+                                            {{$expense->category->name}}
+                                        </span>
+                                    </div>
+                                    <p class="text-lg font-semibold text-slate-800">{{$expense->amount}} DH</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <p class="text-sm text-slate-500">{{$expense->date}}</p>
+                                    <div class="flex gap-2">
+                                        <button onclick="fillModal(this)" x-data @click="$dispatch('open-modal', 'edit-expense')"
+                                            class="p-2 hover:bg-[--accent-light] rounded-lg transition-colors"
+                                            data-id="{{$expense->id}}" data-name="{{$expense->name}}"
+                                            data-amount="{{$expense->amount}}" data-date="{{$expense->date}}"
+                                            data-category="{{$expense->category->id}}"
+                                            data-is-recurring="{{$expense->is_recurring}}"
+                                            data-frequency="{{$expense->frequency}}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-[--accent]">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                            </svg>
+                                        </button>
+                                        <form action="{{route('expenses.destroy', $expense)}}" method="post" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-red-500">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Desktop Table -->
+                    <div class="hidden sm:block overflow-x-auto">
                         <table class="w-full">
                             <thead>
                                 <tr class="border-b border-[--neutral-200]">
                                     <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Name</th>
                                     <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Date</th>
-                                    <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Category
-                                    </th>
-                                    <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Amount
-                                    </th>
-                                    <th class="text-right py-4 px-4 text-[--neutral-600] text-sm font-medium">Actions
-                                    </th>
+                                    <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Category</th>
+                                    <th class="text-left py-4 px-4 text-[--neutral-600] text-sm font-medium">Amount</th>
+                                    <th class="text-right py-4 px-4 text-[--neutral-600] text-sm font-medium">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-[--neutral-200]">
                                 @foreach ($expenses as $expense)
-
                                     <tr class="hover:bg-[--accent-light]/30 transition-colors">
                                         <td class="py-4 px-4">
                                             <div class="flex items-center gap-3">
                                                 <span
-                                                    class="text-sm font-medium text-[--neutral-900]">{{$expense->name}}</span>
+                                                    class="text-sm font-medium text-slate-800">{{$expense->name}}</span>
                                             </div>
                                         </td>
                                         <td class="py-4 px-4">
                                             <div class="flex items-center gap-3">
                                                 <span
-                                                    class="text-sm font-medium text-[--neutral-900]">{{$expense->date}}</span>
+                                                    class="text-sm font-medium text-slate-800">{{$expense->date}}</span>
                                             </div>
                                         </td>
                                         <td class="py-4 px-4">
                                             <span
-                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#45B7D1] text-white">
                                                 {{$expense->category->name}}
                                             </span>
                                         </td>
                                         <td class="py-4 px-4">
-                                            <span class="text-sm font-medium text-[--neutral-900]">{{$expense->amount}}
+                                            <span class="text-sm font-medium text-slate-800">{{$expense->amount}}
                                                 DH</span>
                                         </td>
                                         <td class="py-4 px-4">
@@ -451,14 +486,14 @@
                                             </div>
                                         </td>
                                     </tr>
-
                                 @endforeach
-
                             </tbody>
                         </table>
-                        <div class="mt-4">
-                            {{$expenses->links()}}
-                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-4">
+                        {{$expenses->links()}}
                     </div>
                 </div>
             </div>
@@ -802,7 +837,7 @@
 
             <h2 class="text-xl font-bold mb-2">Alert !!</h2>
             <p class="text-sm text-white/90">
-                You’ve reached <span class="font-bold">{{$alert->percentage}}%</span> of your budget for the month. It might be a good time to evaluate your spending and make adjustments."
+                You've reached <span class="font-bold">{{$alert->percentage}}%</span> of your budget for the month. It might be a good time to evaluate your spending and make adjustments."
             </p>
 
             <!-- Action Button -->
@@ -845,7 +880,7 @@
 
         let ai_insight = @json(session('ai_insight'));
         if (ai_insight) {
-            localStorage.setItem('ai_insight', ai_insight)
+            localStorage.setItem('ai_insight' + {{auth()->id()}}, ai_insight)
         }
 
         console.log(localStorage.getItem('ai_insight'))

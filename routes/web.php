@@ -20,16 +20,6 @@ Route::get('/', function () {
 //     return view('user.dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-// email test
-
-
-Route::get('/test-email', function () {
-    $name = 'Ayadi';
-    $emailmessage = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, omnis? Corporis dolorem officiis unde quidem illum dolor neque aliquam nesciunt!';
-    $response = Mail::to('mailtrap@test.com')->send(new Email($name, $emailmessage));
-    dd($response);
-});
-
 
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
