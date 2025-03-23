@@ -6,9 +6,7 @@
 
         <title>MoneyMind</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -20,40 +18,6 @@
         @endif
     </head>
     <body class="bg-white">
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
-                        >
-                            Log in
-                        </a>
-
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
-        
-
-        @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
-        @endif
 
         <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -71,11 +35,18 @@
                     </div>
                     <div class="hidden md:block">
                         <div class="flex items-center space-x-4">
-                            <a href="/login" class="bg-[#FF660E] text-white px-4 py-2 rounded-lg hover:bg-[#FF660E]/90 transition-all duration-200">Dashboard</a>
-                            <a href="/login" class="bg-[#FF660E] text-white px-4 py-2 rounded-lg hover:bg-[#FF660E]/90 transition-all duration-200">Get Started</a>
-                            <a href="#demo" class="inline-flex justify-center items-center px-4 py-2 border border-gray-200 text-base rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-all duration-200">
+                            @auth
+                                @if (auth()->user()->role == 'admin')
+                                <a href="{{route('dashboard')}}" class="bg-[#FF660E] text-white px-4 py-2 rounded-lg hover:bg-[#FF660E]/90 transition-all duration-200">Dashboard</a>
+                                @else
+                                <a href="{{route('expenses.index')}}" class="bg-[#FF660E] text-white px-4 py-2 rounded-lg hover:bg-[#FF660E]/90 transition-all duration-200">Dashboard</a>
+                                @endif
+                            @else
+                            <a href="{{route('register')}}" class="bg-[#FF660E] text-white px-4 py-2 rounded-lg hover:bg-[#FF660E]/90 transition-all duration-200">Get Started</a>
+                            <a href="{{route('login')}}" class="inline-flex justify-center items-center px-4 py-2 border border-gray-200 text-base rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-all duration-200">
                                 Log in
                             </a>
+                            @endauth
                         </div>
                     </div>
         
@@ -155,11 +126,8 @@
                             Simplifiez votre gestion financière avec notre plateforme intelligente. Suivez vos dépenses, atteignez vos objectifs d'épargne et recevez des conseils personnalisés.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="/register" class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-[#FF660E] hover:bg-[#FF660E]/90 transition-all duration-200">
+                            <a href="{{route('register')}}" class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-[#FF660E] hover:bg-[#FF660E]/90 transition-all duration-200">
                                 Commencer Gratuitement
-                            </a>
-                            <a href="#demo" class="inline-flex justify-center items-center px-6 py-3 border border-gray-200 text-base font-medium rounded-xl text-gray-700 bg-white hover:bg-gray-50 transition-all duration-200">
-                                Voir la Démo
                             </a>
                         </div>
                     </div>
@@ -264,7 +232,7 @@
                     </div>
                 </div>
                 <div class="mt-12 border-t border-gray-200 pt-8">
-                    <p class="text-base text-gray-400 text-center">&copy; 2024 MoneyMind. Tous droits réservés.</p>
+                    <p class="text-base text-gray-400 text-center">&copy; 2025 MoneyMind. Tous droits réservés.</p>
                 </div>
             </div>
         </footer>

@@ -4,7 +4,7 @@
             <!-- Logo -->
 
             <div class="flex items-center flex-shrink-0">
-                <a href="#" class="flex items-center">
+                <a href="/" class="flex items-center">
                     <div class="w-10 h-10 rounded-l-lg bg-gradient-to-br from-[#FF6B6B] to-[#fe945c] flex items-center justify-center">
                         <span class="text-xl font-bold text-white">M</span>
                     </div>
