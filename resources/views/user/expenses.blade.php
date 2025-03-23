@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <span
-                            class="px-4 py-1.5 bg-gradient-to-r from-[#4ECDC4]/10 to-[#45B7D1]/10 text-[#4ECDC4] text-sm font-medium rounded-full border border-[#4ECDC4]/20">Updated
+                            class="px-4 py-1.5 text-center bg-gradient-to-r from-[#4ECDC4]/10 to-[#45B7D1]/10 text-[#4ECDC4] text-sm font-medium rounded-full border border-[#4ECDC4]/20">Updated
                             today</span>
                     </div>
 
@@ -380,7 +380,7 @@
                                 <div class="flex justify-between items-start mb-3">
                                     <div>
                                         <h4 class="font-medium text-slate-800">{{$expense->name}}</h4>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mt-1">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#45B7D1] text-white mt-1">
                                             {{$expense->category->name}}
                                         </span>
                                     </div>
@@ -444,7 +444,7 @@
                                         </td>
                                         <td class="py-4 px-4">
                                             <span
-                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#45B7D1] text-white">
                                                 {{$expense->category->name}}
                                             </span>
                                         </td>

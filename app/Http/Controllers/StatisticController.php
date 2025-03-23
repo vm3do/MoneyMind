@@ -41,7 +41,7 @@ class StatisticController extends Controller
                             ->get();
 
         $monthly_expense = $monthly_expense->map(function($expense){
-            $expense->month_year = Carbon::createFromDate($expense->year, $expense->month, 1)->format('m-Y');
+            $expense->month_year = Carbon::createFromDate($expense->year, $expense->month, 1)->format('M y');
             return $expense;
         });
 
