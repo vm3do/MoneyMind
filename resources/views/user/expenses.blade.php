@@ -845,7 +845,7 @@
 
         let ai_insight = @json(session('ai_insight'));
         if (ai_insight) {
-            localStorage.setItem('ai_insight', ai_insight)
+            localStorage.setItem('ai_insight' + {{auth()->id()}}, ai_insight)
         }
 
         console.log(localStorage.getItem('ai_insight'))
