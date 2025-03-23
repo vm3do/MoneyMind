@@ -24,7 +24,7 @@
                 <div class="flex items-center justify-between">
                     <!-- Logo -->
                     <div class="flex items-center flex-shrink-0">
-                        <a href="#" class="flex items-center">
+                        <a href="/" class="flex items-center">
                             <div class="w-10 h-10 rounded-l-lg bg-gradient-to-br from-[#FF6B6B] to-[#fe945c] flex items-center justify-center">
                                 <span class="text-xl font-bold text-white">M</span>
                             </div>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="relative">
                         <div class="absolute inset-0 bg-gradient-to-br from-[#FF660E]/30 via-[#FF8F4F]/30 to-[#FFC107]/30 opacity-30 blur-3xl rounded-full"></div>
-                        <img src="/images/dashboard-preview.png" alt="MoneyMind Dashboard" class="relative rounded-2xl shadow-2xl border border-gray-100">
+                        <img src="{{asset('images/image.webp')}}" alt="MoneyMind " class="relative rounded-2xl shadow-2xl border border-gray-100">
                     </div>
                 </div>
             </div>
