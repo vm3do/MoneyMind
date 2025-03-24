@@ -144,17 +144,17 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
-                        Gérez votre budget intelligemment avec
+                        Manage your budget intelligently with
                         <span class="text-[#FF660E]">MoneyMind</span>
                     </h1>
                     <p class="text-lg text-gray-600 mb-8">
-                        Simplifiez votre gestion financière avec notre plateforme intelligente. Suivez vos dépenses,
-                        atteignez vos objectifs d'épargne et recevez des conseils personnalisés.
+                        Simplify your financial management with our intelligent platform. Track your expenses,
+                        reach your savings goals and receive personalized advice.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="{{ route('register') }}"
                             class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-[#FF660E] hover:bg-[#FF660E]/90 transition-all duration-200">
-                            Commencer Gratuitement
+                            Start Free
                         </a>
                     </div>
                 </div>
@@ -173,8 +173,8 @@
     <section class="py-20" id="features">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Fonctionnalités Principales</h2>
-                <p class="text-lg text-gray-600">Tout ce dont vous avez besoin pour une gestion financière efficace</p>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Main Features</h2>
+                <p class="text-lg text-gray-600">Everything you need for effective financial management</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
@@ -187,9 +187,8 @@
                                 d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Suivi Intelligent</h3>
-                    <p class="text-gray-600">Suivez automatiquement vos dépenses et recevez des analyses détaillées de
-                        vos habitudes financières.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Smart Tracking</h3>
+                    <p class="text-gray-600">Automatically track your expenses and receive detailed analysis of your financial habits.</p>
                 </div>
 
                 <!-- Feature 2 -->
@@ -202,9 +201,8 @@
                                 d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Alertes Personnalisées</h3>
-                    <p class="text-gray-600">Recevez des notifications intelligentes pour rester dans les limites de
-                        votre budget.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Custom Alerts</h3>
+                    <p class="text-gray-600">Receive intelligent notifications to stay within your budget limits.</p>
                 </div>
 
                 <!-- Feature 3 -->
@@ -217,9 +215,8 @@
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Gestion Automatisée</h3>
-                    <p class="text-gray-600">Automatisez l'ajout de vos revenus et la gestion de vos dépenses
-                        récurrentes.</p>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Automated Management</h3>
+                    <p class="text-gray-600">Automate the addition of your income and management of recurring expenses.</p>
                 </div>
             </div>
         </div>
@@ -228,10 +225,10 @@
     <!-- CTA Section -->
     <section class="py-20 bg-[#FF660E]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-white mb-8">Prêt à prendre le contrôle de vos finances ?</h2>
+            <h2 class="text-3xl font-bold text-white mb-8">Ready to take control of your finances?</h2>
             <a href="/register"
                 class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-[#FF660E] bg-white hover:bg-gray-50 transition-all duration-200">
-                Commencer Maintenant
+                Start Now
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20"
                     fill="currentColor">
                     <path fill-rule="evenodd"
@@ -247,41 +244,38 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Produit</h3>
+                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Product</h3>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Fonctionnalités</a>
-                        </li>
-                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Tarifs</a></li>
+                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Features</a></li>
+                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Pricing</a></li>
                         <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">FAQ</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Entreprise</h3>
+                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Company</h3>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">À propos</a></li>
+                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">About</a></li>
                         <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Blog</a></li>
-                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Carrières</a></li>
+                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Careers</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Légal</h3>
+                    <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Legal</h3>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Confidentialité</a>
-                        </li>
-                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Conditions</a></li>
+                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Privacy</a></li>
+                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Terms</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase mb-4">Support</h3>
                     <ul class="space-y-4">
-                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Centre d'aide</a>
-                        </li>
+                        <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Help Center</a></li>
                         <li><a href="#" class="text-base text-gray-500 hover:text-[#FF660E]">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="mt-12 border-t border-gray-200 pt-8">
-                <p class="text-base text-gray-400 text-center">&copy; 2025 MoneyMind. Tous droits réservés.</p>
+                <p class="text-base text-gray-400 text-center">&copy; 2025 MoneyMind. All rights reserved.</p>
             </div>
         </div>
     </footer>
