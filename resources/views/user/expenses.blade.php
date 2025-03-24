@@ -522,7 +522,7 @@
         <div x-show="show" class="fixed inset-0 bg-black bg-opacity-50 transition-opacity"></div>
 
         <!-- Modal Content -->
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
             <div x-show="show"
                 class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
                 @click.away="show = false">
