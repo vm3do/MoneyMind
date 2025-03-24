@@ -891,7 +891,7 @@
 
         console.log(localStorage.getItem('ai_insight'))
 
-        if (localStorage.getItem('ai_insight ' + {{auth()->id()}})) {
+        if (localStorage.getItem('ai_insight' + {{auth()->id()}})) {
             document.getElementById('ai_insight').textContent = localStorage.getItem('ai_insight' + {{auth()->id()}});
         }
 
