@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#FF660E">
     <title>Login - {{ config('app.name', 'Laravel') }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-[Poppins] antialiased">
@@ -107,7 +107,7 @@
 
     <div class="min-h-screen flex">
         <!-- Left Side - Login Form -->
-        <div class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24">
+        <div class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
             <div class="max-w-md w-full space-y-8">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold text-gray-900">Welcome back!</h2>
