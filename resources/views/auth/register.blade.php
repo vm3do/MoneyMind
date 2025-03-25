@@ -120,8 +120,8 @@
     </header>
 
     <div class="min-h-screen flex">
-        <!-- Left Side - Register Form -->
-        <div class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-24">
+        <!-- Register Form -->
+        <div class="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8">
             <div class="max-w-md w-full space-y-8">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold text-gray-900">Create an account</h2>
