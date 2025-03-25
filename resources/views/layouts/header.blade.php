@@ -16,12 +16,18 @@
 
             <!-- Center Navigation - Hidden on Mobile -->
             <nav class="hidden md:flex items-center space-x-8">
+                @if (auth()->user()->role == 'user')
                 <a href="{{route('statistics.index')}}" class="text-slate-600 hover:text-[#FF6B6B] font-medium transition-colors">
                     Statistics
                 </a>
                 <a href="/expenses" class="text-slate-600 hover:text-[#FF6B6B] font-medium transition-colors">
                     Expenses
                 </a>
+                @else
+                <a href="{{route('dashboard')}}" class="text-slate-600 hover:text-[#FF6B6B] font-medium transition-colors">
+                    Dashboard
+                </a>
+                @endif
             </nav>
 
             <!-- Profile Dropdown -->
@@ -54,8 +60,12 @@
                      class="absolute right-0 mt-2 w-48 origin-top-right bg-white rounded-xl shadow-lg border border-slate-200/60 focus:outline-none">
                     <!-- Mobile Navigation Links -->
                     <div class="md:hidden px-2 py-2 border-b border-slate-200/60">
+                        @if (auth()->user()->role == 'user')
                         <a href="{{route('statistics.index')}}" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 rounded-lg">Statistics</a>
                         <a href="/expenses" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 rounded-lg">Expenses</a>
+                        @else
+                        <a href="{{route('dashboard')}}" class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 rounded-lg">Dashboard</a>
+                        @endif
                     </div>
                     <!-- Profile Options -->
                     <div class="px-2 py-2">

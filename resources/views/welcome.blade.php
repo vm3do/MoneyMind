@@ -81,7 +81,7 @@
                         x-transition:leave-end="transform opacity-0 scale-95"
                         class="absolute right-0 mt-2 w-48 origin-top-right bg-white rounded-xl shadow-lg border border-slate-200/60 focus:outline-none">
                         <!-- Mobile Navigation Links -->
-                        <div class="md:hidden px-2 py-2 border-b border-slate-200/60">
+                        <div class="md:hidden px-2 py-4 border-b border-slate-200/60">
                             @auth
                                 @if (auth()->user()->role == 'admin')
                                     <a href="{{ route('dashboard') }}"
