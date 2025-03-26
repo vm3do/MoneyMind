@@ -148,7 +148,7 @@ class ExpenseController extends Controller
 
         // dd($ai_insight);
 
-        return redirect()->back()->with(['success' => 'expense added', 'ai_insight' => $ai_insight]);
+        return redirect()->back()->with(['success' => 'Expense created successfully', 'ai_insight' => $ai_insight]);
     }
 
     /**
