@@ -96,7 +96,7 @@ class ExpenseController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {	
+    {
         $salaryDay = FacadesAuth::user()->salary_date;
         $start_date = Carbon::now()->month()->day($salaryDay);
         $end_date = Carbon::now()->addMonth()->day($salaryDay - 1);
@@ -136,7 +136,7 @@ class ExpenseController extends Controller
         $validated['category_id'] = $validated['category'];
         unset($validated['category']);
 
-        Expense::create($validated);
+       dd( Expense::create($validated)->toArray());
         $user = auth()->user();
         $user->balance -= $validated['amount'];
         $user->save();
