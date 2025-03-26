@@ -266,6 +266,11 @@
                                 </ul>
                             </div>
                         @endif
+                        @if (session('success'))
+                            <div class="text-green-500 bg-green-100 p-2 mb-2 rounded-md">
+                                {{session('success')}}
+                            </div>
+                        @endif
                         <div class="grid grid-cols-2 gap-6">
                             <div
                                 class="p-4 rounded-xl bg-gradient-to-br from-[#FF6B6B]/10 to-[#FF8E53]/10 border border-[#FF6B6B]/20">

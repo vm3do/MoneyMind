@@ -96,7 +96,8 @@ class ExpenseController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {	
+    {
+
         $salaryDay = FacadesAuth::user()->salary_date;
         $start_date = Carbon::now()->month()->day($salaryDay);
         $end_date = Carbon::now()->addMonth()->day($salaryDay - 1);
@@ -124,7 +125,7 @@ class ExpenseController extends Controller
         ];
 
         $validated = $request->validate([
-            'name' => 'required|min:3',
+            'name' => 'required|min:2',
             'amount' => 'required|numeric',
             'category' => 'required|integer',
             'date' => 'required|date',
@@ -182,7 +183,7 @@ class ExpenseController extends Controller
 
         $expense->update($validated);
 
-        return redirect()->back()->with('success', 'updated is done');
+        return redirect()->back()->with('success', 'Expense updated successfully');
     }
 
     /**
@@ -191,6 +192,6 @@ class ExpenseController extends Controller
     public function destroy(Expense $expense)
     {
         $expense->delete();
-        return redirect()->back()->with('success', 'expense deleted successfully');
+        return redirect()->back()->with('success', 'Expense deleted successfully');
     }
 }

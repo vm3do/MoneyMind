@@ -54,6 +54,19 @@
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
+        @if($errors->any())
+            <div class="bg-red-500 text-white p-3 rounded-lg mb-4">
+                @foreach ($errors->all() as $error)
+                    {{$error}}
+                @endforeach
+            </div>
+        @endif
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-3 rounded-lg mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <!-- Expense Alerts & Info Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <!-- Expense Information Card -->
