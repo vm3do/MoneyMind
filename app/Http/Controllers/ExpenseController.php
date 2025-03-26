@@ -97,7 +97,6 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-
         $salaryDay = FacadesAuth::user()->salary_date;
         $start_date = Carbon::now()->month()->day($salaryDay);
         $end_date = Carbon::now()->addMonth()->day($salaryDay - 1);
